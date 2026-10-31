@@ -34,13 +34,11 @@ chart said back then.
 
 ## Demo
 
-[![Watch the 3 minute 54 second SoloPrac demo](_e2e/shots/08-chat-answer.png)](https://github.com/RohanBhoge15/SolumCapstone/raw/main/docs/videos/SoloPrac-demo.webm)
+https://github.com/user-attachments/assets/dc154cb6-94a5-4b00-9b4b-e29e6b20874a
 
-**3 min 54 s · silent · 1080p WebM.** Click the preview to watch the full
-walkthrough, or open
-[`docs/videos/SoloPrac-demo.webm`](docs/videos/SoloPrac-demo.webm) directly.
-If GitHub shows the file page instead of a player, use **View raw** or download
-it and open it locally.
+**3 min 54 s · silent · 1080p WebM.** The player above is the full walkthrough.
+The original file is also kept in
+[`docs/videos/SoloPrac-demo.webm`](docs/videos/SoloPrac-demo.webm).
 
 The recording follows one doctor and one patient from an empty dashboard to a
 full record: patient creation, five record kinds, chest X-ray and brain MRI
