@@ -94,13 +94,37 @@ machine, and only de-identified prompts may cross to an external LLM. The
 de-identification gate is enforced by default and is not something to switch off
 in a clinic that holds real patient data.
 
+### Data model
+
+![SoloPrac database schema showing accounts, doctors, patients, events, and documents](docs/diagrams/db-schema.png)
+
+The chart is append-only. The `events` table has no mutable status column: a
+correction is another event whose `supersedes_id` points at the event it
+replaces, and the current/historical state is worked out on read. `documents`
+keeps the S3 key and the same supersession link, so even a re-issued PDF has a
+lineage instead of overwriting its predecessor.
+
+### From question to cited answer
+
+![SoloPrac request flow from a doctor's question through retrieval, verification, and a grounded answer](docs/diagrams/request-flow.png)
+
+1. The question is parsed for temporal intent: current, as-of a date, or a
+   summary.
+2. Validity-aware retrieval filters the candidate events for that instant, then
+   combines dense similarity with lexical evidence.
+3. A two-axis provenance check asks whether the citation is correct and whether
+   the claim is actually supported by it.
+4. Only the de-identified extract reaches the LLM chain. If no model is
+   available, the same path returns cited extracts instead of inventing prose.
+5. Identical rows are collapsed to one chip per entity, and the answer either
+   ships with citations or abstains with zero citations.
+
 More detail:
 
 - [System design](docs/SystemDesign.md)
-- [Database schema](docs/diagrams/db-schema.png)
-- [Request flow](docs/diagrams/request-flow.png)
 - [Literature survey](docs/LiteratureSurvey.md)
 - [Feasibility study](docs/FeasibilityStudy.MD)
+- [Editable diagram sources](docs/diagrams/)
 
 ---
 
