@@ -75,7 +75,7 @@ photo capture.
 
 | Patient portal | Photo capture and crop |
 |---|---|
-| ![Patient portal with documents from the doctor](_e2e/shots/14-patient-portal.png) | ![Profile photo crop dialog](_e2e/shots/c1-crop-dialog.png) |
+| ![Patient portal with documents from the doctor](_e2e/shots/14-patient-portal.png) | ![Profile photo crop dialog](_e2e/shots/p2-settings-after.png) |
 
 ---
 
