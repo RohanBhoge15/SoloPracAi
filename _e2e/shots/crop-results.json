@@ -1,0 +1,57 @@
+[
+  {
+    "ok": true,
+    "label": "registered",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "the crop dialog opened",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "it explains what to do",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "zoom applied",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "the confirm button is enabled",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "the crop dialog closed",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "no \"Could not crop\" error is shown",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "the cropped photo decoded in the browser",
+    "detail": "512px natural"
+  },
+  {
+    "ok": true,
+    "label": "loaded from object storage, not the API",
+    "detail": "http://localhost:8333/solum-docs/avatars/760ef"
+  },
+  {
+    "ok": true,
+    "label": "the stored crop is square",
+    "detail": "512x512"
+  },
+  {
+    "ok": true,
+    "label": "no console/page errors",
+    "detail": "0"
+  }
+]

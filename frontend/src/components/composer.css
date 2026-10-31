@@ -1,0 +1,333 @@
+/* Dialog shell and the prescription medication table. */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(3, 5, 10, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.modal {
+  width: 100%;
+  max-width: 760px;
+  max-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
+}
+
+.modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 26px 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-title {
+  font-size: 19px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+.modal-sub {
+  font-size: 13px;
+  color: var(--text-3);
+  margin-top: 3px;
+}
+
+.modal-x {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  color: var(--text-3);
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.modal-x:hover { background: var(--surface-2); color: var(--text); }
+
+.modal-body {
+  padding: 22px 26px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Children must never shrink to fit.
+   `.modal-body` is a scrolling flex column, so once its content is
+   taller than the box every child is a flex item with the default
+   `flex-shrink: 1` and gets squeezed. `.rx-table` then collapsed to
+   about half its natural height while its `overflow: hidden` clipped
+   the DRUG/DOSE/FREQUENCY/DURATION header away - the drug row was
+   rendering in the DOM the whole time, just with its labels cut off
+   and the box too short to show it, which read as "the drug field is
+   missing". The medicine row is the one field that unlocks the submit
+   button, so it is also the one that must never be the thing that
+   disappears. */
+.modal-body > * {
+  flex-shrink: 0;
+}
+
+.modal-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 26px 20px;
+  border-top: 1px solid var(--border);
+}
+
+/* Stated reason for a disabled primary button. Takes the free space on
+   the left so the buttons stay right-aligned, and sits in the footer
+   where the eye already is when it finds the button disabled. */
+.modal-reason {
+  flex: 1;
+  font-size: 12.5px;
+  color: var(--text-3);
+  align-self: center;
+}
+
+/* ── medication table ───────────────────────────────────────── */
+
+.rx-table {
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--bg-2);
+}
+
+.rx-head,
+.rx-row {
+  display: grid;
+  grid-template-columns: 1.6fr 0.9fr 1.3fr 0.9fr 34px;
+  gap: 8px;
+  padding: 9px 12px;
+  align-items: center;
+}
+
+.rx-head {
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.rx-row {
+  border-bottom: 1px solid var(--border);
+}
+.rx-row:last-of-type { border-bottom: none; }
+
+.rx-row input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  border: 1px solid transparent;
+  color: var(--text);
+  font-size: 13.5px;
+  transition: border-color var(--fast), background var(--fast);
+}
+.rx-row input::placeholder { color: var(--text-3); }
+.rx-row input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--bg-2);
+}
+
+.rx-del {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  color: var(--text-3);
+  font-size: 13px;
+}
+.rx-del:hover:not(:disabled) {
+  background: var(--danger-dim);
+  color: #ffb4b4;
+}
+.rx-del:disabled { opacity: 0.25; cursor: not-allowed; }
+
+.rx-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 12px;
+  background: var(--surface-2);
+  border-top: 1px solid var(--border);
+}
+
+.rx-hint {
+  font-size: 11.5px;
+  color: var(--superseded);
+}
+
+/* ── checkbox field ─────────────────────────────────────────── */
+
+.checkbox-field {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  align-self: end;
+  padding-bottom: 11px;
+}
+.checkbox-field input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--current);
+  cursor: pointer;
+}
+.checkbox-field span {
+  font-size: 13px;
+  color: var(--text-2);
+  font-weight: 500;
+}
+
+/* ── success ────────────────────────────────────────────────── */
+
+.modal-done {
+  padding: 56px 26px 60px;
+  text-align: center;
+}
+
+/* The "Issued, but no tab could be opened" screen, shown inside a Sheet
+   on a phone. Unlike the desktop path this is a real place the doctor can
+   get stuck, so the View PDF button is a full-size target rather than a
+   quiet link. */
+.issued {
+  padding: 34px 0 12px;
+  text-align: center;
+}
+.issued-title {
+  font-size: 19px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.issued-ref {
+  margin-bottom: 22px;
+  color: var(--text-2);
+}
+.issued-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+}
+.issued-actions .btn {
+  justify-content: center;
+  padding: 13px 18px;
+}
+
+.done-mark {
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--current-dim);
+  border: 1px solid rgba(34, 211, 154, 0.4);
+  color: var(--current);
+  animation: pop 420ms var(--ease);
+}
+
+@keyframes pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.08); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.modal-done h3 {
+  font-size: 20px;
+  font-weight: 750;
+  margin-bottom: 8px;
+}
+.modal-done p { color: var(--text-2); }
+
+@media (max-width: 640px) {
+  .rx-head { display: none; }
+  .rx-row {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "drug drug"
+      "dose freq"
+      "dur del";
+    gap: 6px;
+    padding: 12px;
+  }
+  .rx-row input:nth-child(1) { grid-area: drug; }
+  .rx-row input:nth-child(2) { grid-area: dose; }
+  .rx-row input:nth-child(3) { grid-area: freq; }
+  .rx-row input:nth-child(4) { grid-area: dur; }
+  .rx-del { grid-area: del; justify-self: end; }
+
+  /* The dialog has to fit the screen, not the screen's idea of it.
+     `.modal` is `width: 100%` inside a `position: fixed` backdrop, so
+     without an explicit width cap it inherits the widest thing inside it.
+     The medication grid's min-content width is larger than a 390px phone,
+     which pushed the whole dialog to 760px+ and made the page scroll
+     sideways. Capping the dialog to the viewport and letting the body
+     scroll vertically is what a phone actually needs. */
+  .modal-backdrop {
+    padding: 0;
+    align-items: flex-end;
+  }
+  .modal {
+    width: 100%;
+    max-width: 100vw;
+    max-height: 92vh;
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+  }
+  .modal-head,
+  .modal-body,
+  .modal-foot { padding-left: 18px; padding-right: 18px; }
+  .modal-foot { flex-wrap: wrap; }
+  .modal-reason { flex-basis: 100%; }
+  .modal-foot .btn { flex: 1; justify-content: center; }
+
+  /* The success screen is the only thing a phone user sees after issuing,
+     so its controls need to be reachable thumbs, not a link in a corner. */
+  .modal-done { padding: 40px 20px 44px; }
+  .issued { padding: 24px 0 8px; }
+}
+
+/* Drug autocomplete. The list lives in a portal on body (see DrugInput),
+   so none of this depends on the row it came from. */
+.drugwrap { position: relative; min-width: 0; }
+.drugwrap > input { width: 100%; }
+.drug-pop {
+  position: fixed;
+  z-index: 400;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  max-height: 296px;
+  overflow-y: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}
+.drug-pop li {
+  padding: 8px 10px;
+  border-radius: var(--r-sm);
+  font-size: 13.5px;
+  color: var(--text-2);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.drug-pop li b { color: var(--text); font-weight: 700; }
+.drug-pop li.on, .drug-pop li:hover { background: var(--surface-2); color: var(--text); }

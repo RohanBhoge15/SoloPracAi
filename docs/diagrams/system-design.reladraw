@@ -1,0 +1,30 @@
+// SoloPrac system design. Every box here is a real container in
+// docker-compose.yml; every edge is traffic the system actually sends.
+// Regenerate: node docs/render-diagrams.mjs (SVG via reladraw, PNG via
+// headless Chromium screenshot of the SVG).
+diagram theme: dark
+
+style store fill: #142814 border: #486544 badge: database
+style svc fill: #14283d border: #486584 badge: cube
+
+node browser "SoloPrac PWA / (Vite SPA + service worker)"
+node nginx "nginx :8080 / (serves dist, proxies /api/)" right of browser
+node api "FastAPI :8000 / (auth, chat, capture, documents)" style: svc right of nginx gap: wide
+node worker "worker / (deep reads, OCR jobs)" style: svc right of api
+
+node pg "postgres / (append-only events, accounts)" style: store below nginx
+node redis "redis / (job + notification streams)" style: store right of pg
+node qdrant "qdrant / (MedCPT 768-d, BiomedCLIP 512-d)" style: store right of redis
+node seaweed "seaweedfs :8333 / (prescription + scan PDFs)" style: store badge: package right of qdrant
+
+node llm "LLM chain, de-identified prompts only / (groq -> openrouter -> opencode)" below redis gap: wide
+
+edge browser -> nginx "HTTP :8080"
+edge nginx -> api "/api/, unbuffered stream"
+edge api -> pg "asyncpg"
+edge api -> redis "streams"
+edge api -> qdrant "vectors"
+edge api -> seaweed "S3 PDFs"
+edge worker -> pg "jobs out"
+edge worker -> redis "jobs in"
+edge api -> llm "no PII crosses this line"

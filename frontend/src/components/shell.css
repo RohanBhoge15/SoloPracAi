@@ -1,0 +1,265 @@
+/* Shared app chrome: top bar, notification bell, user menu, and the
+   page container every signed-in view sits in. */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(5, 7, 13, 0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.brand-name { font-size: 16px; }
+
+.topnav {
+  display: flex;
+  gap: 4px;
+  margin-left: 10px;
+  flex: 1;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.topnav::-webkit-scrollbar { display: none; }
+
+.topnav-link {
+  padding: 7px 13px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-3);
+  white-space: nowrap;
+  transition: color var(--fast), background var(--fast);
+}
+.topnav-link:hover { color: var(--text-2); background: var(--surface-2); }
+.topnav-link.on {
+  color: var(--text);
+  background: var(--surface-3);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.topmain {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+/* ── bell ───────────────────────────────────────────────────── */
+
+.bell { position: relative; }
+
+.bell-btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  transition: color var(--fast), border-color var(--fast), background var(--fast);
+}
+.bell-btn:hover { color: var(--text); border-color: var(--border-bright); }
+.bell-btn.on { color: var(--text); background: var(--surface-3); }
+
+.bell-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  border-radius: 9px;
+  background: var(--danger);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--bg);
+}
+
+.bell-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 340px;
+  max-width: calc(100vw - 32px);
+  z-index: 60;
+  padding: 0;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+.bell-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13.5px;
+}
+.bell-clear {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.bell-clear:hover { text-decoration: underline; }
+
+.bell-list {
+  list-style: none;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.bell-item {
+  display: flex;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--fast);
+}
+.bell-item:last-child { border-bottom: none; }
+.bell-item:hover { background: var(--surface-2); }
+.bell-item.unread { background: var(--accent-dim); }
+
+.bell-kind {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+  background: var(--text-3);
+}
+.k-prescription { background: var(--current); }
+.k-report { background: var(--accent); }
+.k-certificate { background: #a78bfa; }
+.k-invoice { background: var(--superseded); }
+
+.bell-body { min-width: 0; }
+.bell-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+}
+.bell-text {
+  font-size: 12.5px;
+  color: var(--text-2);
+  line-height: 1.5;
+  margin-top: 2px;
+  overflow-wrap: anywhere;
+}
+.bell-time {
+  display: block;
+  font-size: 11px;
+  color: var(--text-3);
+  margin-top: 4px;
+}
+
+.bell-empty {
+  padding: 26px 16px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-3);
+}
+.bell-offline { color: var(--superseded); }
+
+/* ── user menu ──────────────────────────────────────────────── */
+
+.usermenu { position: relative; }
+
+.avatar-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--current), var(--accent));
+  color: #04121c;
+  font-size: 12.5px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  letter-spacing: -0.02em;
+}
+
+/* The picture inside the account-menu button. The gradient and dark text
+   belong to the initials tile, so they are overridden or the photo sits
+   on a gradient it does not need. */
+.avatar-in-btn {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.avatar-in-btn--img {
+  object-fit: cover;
+  display: block;
+  background: var(--surface-3);
+}
+
+.usermenu-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 250px;
+  z-index: 60;
+  padding: 6px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+.usermenu-head {
+  padding: 12px 12px 10px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 6px;
+}
+.usermenu-name { font-size: 13.5px; font-weight: 700; }
+.usermenu-mail {
+  font-size: 11.5px;
+  color: var(--text-3);
+  margin: 2px 0 8px;
+  overflow-wrap: anywhere;
+}
+
+.usermenu-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 9px 12px;
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  color: var(--text-2);
+  transition: background var(--fast), color var(--fast);
+}
+.usermenu-item:hover { background: var(--surface-2); color: var(--text); }
+.usermenu-item.danger:hover {
+  background: var(--danger-dim);
+  color: #ffb4b4;
+}
+
+@media (max-width: 720px) {
+  .topbar-inner { padding: 10px 16px; gap: 12px; }
+  .topmain { padding: 22px 16px 64px; }
+  .brand-name { display: none; }
+  .topnav-link { padding: 6px 10px; font-size: 12.5px; }
+}

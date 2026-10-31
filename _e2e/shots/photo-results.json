@@ -1,0 +1,42 @@
+[
+  {
+    "ok": true,
+    "label": "doctor registered",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "an avatar element is visible",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "the avatar has real size",
+    "detail": "76x76"
+  },
+  {
+    "ok": false,
+    "label": "an <img> is rendered after upload",
+    "detail": "still showing initials"
+  },
+  {
+    "ok": true,
+    "label": "no 401/403 from the API",
+    "detail": "clean"
+  },
+  {
+    "ok": false,
+    "label": "the photo is still there after a reload",
+    "detail": ""
+  },
+  {
+    "ok": false,
+    "label": "and it still decodes after a reload",
+    "detail": "0px natural"
+  },
+  {
+    "ok": true,
+    "label": "no console errors",
+    "detail": "0"
+  }
+]

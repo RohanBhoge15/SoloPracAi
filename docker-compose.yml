@@ -1,0 +1,193 @@
+name: solum
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: solum-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-solum}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-solum}
+      POSTGRES_DB: ${POSTGRES_DB:-solum}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-solum} -d ${POSTGRES_DB:-solum}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: solum-redis
+    command: ["redis-server", "--save", "60", "1", "--loglevel", "warning"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  qdrant:
+    image: qdrant/qdrant:v1.12.4
+    container_name: solum-qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrantdata:/qdrant/storage
+    # An empty QDRANT__SERVICE__API_KEY is interpreted as "set" by Qdrant
+    # and then demands a bearer token for every request. Omit the
+    # variable entirely when no key is configured, and run open on
+    # localhost only.
+    environment:
+      QDRANT__SERVICE__API_KEY: ${QDRANT_API_KEY:-solum-qdrant-local}
+      QDRANT__SERVICE__HOST: 0.0.0.0
+    healthcheck:
+      # This image ships bash but no wget or curl, so the usual
+      # `wget -qO- /readyz` probe can never succeed and leaves the container
+      # permanently "unhealthy" while it is in fact serving. A bash
+      # /dev/tcp connect proves the listener is up, which is the honest
+      # signal available. Actual Qdrant reachability is reported by
+      # GET /api/v1/semantic/status, which the API calls for real.
+      test: ["CMD-SHELL", "bash -c 'exec 3<>/dev/tcp/localhost/6333' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    restart: unless-stopped
+
+  # Object storage. SeaweedFS rather than MinIO: MinIO's Community Edition
+  # was archived in April 2026, and SeaweedFS speaks the same S3 API, so
+  # moving to AWS later is a change of endpoint.
+  seaweedfs:
+    image: chrislusf/seaweedfs:3.80
+    container_name: solum-seaweed
+    command: "server -dir=/data -s3 -s3.port=8333 -master.port=9333 -volume.port=8090"
+    ports:
+      - "8333:8333"
+      - "9333:9333"
+      - "8090:8090"
+    volumes:
+      - seaweeddata:/data
+    healthcheck:
+      # 127.0.0.1, not localhost: inside this image `localhost` resolves to
+      # ::1 first and the S3 listener is IPv4-only, so the probe failed 388
+      # consecutive times while the service was serving normally.
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:8333/ >/dev/null 2>&1 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 15s
+    restart: unless-stopped
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: solum-api
+    env_file:
+      - .env
+    environment:
+      POSTGRES_HOST: postgres
+      REDIS_URL: redis://redis:6379/0
+      QDRANT_URL: http://qdrant:6333
+      QDRANT_API_KEY: ${QDRANT_API_KEY:-solum-qdrant-local}
+      S3_ENDPOINT: http://seaweedfs:8333
+      # LAN IP so phones on the same Wi-Fi can open PDFs/photos.
+      # Revert to http://localhost:8333 when the demo is over.
+      S3_PUBLIC_ENDPOINT: http://192.168.29.161:8333
+      ENVIRONMENT: ${ENVIRONMENT:-development}
+      # Model paths are container paths, not the host's D:\models. Set here
+      # rather than relying on the defaults, which are Windows paths and
+      # would resolve to nothing inside the image.
+      MODELS_ROOT: /models
+      MEDCPT_QUERY_PATH: /models/MedCPT-Query-Encoder
+      MEDCPT_ARTICLE_PATH: /models/MedCPT-Article-Encoder
+      BGE_M3_PATH: /models/bge-m3
+      BIOMEDCLIP_PATH: /models/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224
+      MEDGEMMA_GGUF: /models/medgemma-gguf
+      TEXT_ENCODER: ${TEXT_ENCODER:-medcpt}
+      # BiomedCLIP is opt-in: ~750 MB of weights and a ~1 s CPU forward
+      # pass per image. Off by default so the text path stays quick.
+      ENABLE_VISION: ${ENABLE_VISION:-false}
+      PRELOAD_EMBEDDINGS: "true"
+      # Writable scratch for the encoder configs the app derives at load
+      # time. A named volume, because /models is mounted read-only and
+      # writing into it aborts the encoder load outright.
+      EMBEDDER_CACHE: /var/cache/solum/embedders
+      # No hub access from the container. Without this, a config that names
+      # a hub repo blocks on a network timeout instead of failing fast.
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+    ports:
+      - "8000:8000"
+    volumes:
+      # Local models, mounted read-only. Never written to.
+      - "${MODELS_ROOT:-D:/models}:/models:ro"
+      - embeddercache:/var/cache/solum
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      qdrant:
+        condition: service_started
+      seaweedfs:
+        condition: service_started
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request;urllib.request.urlopen('http://localhost:8000/health')\""]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      # Generous, because the API now warms the embedding models in the
+      # background at boot. That is off the request path, so readiness
+      # should not wait on it, but a cold container can still be slow to
+      # import torch on first use.
+      start_period: 90s
+    restart: unless-stopped
+
+  worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: solum-worker
+    command: ["python", "-m", "app.worker"]
+    env_file:
+      - .env
+    environment:
+      POSTGRES_HOST: postgres
+      REDIS_URL: redis://redis:6379/0
+      QDRANT_URL: http://qdrant:6333
+    volumes:
+      - "${MODELS_ROOT:-D:/models}:/models:ro"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: solum-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend/dist:/usr/share/nginx/html:ro
+      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  redisdata:
+  qdrantdata:
+  seaweeddata:
+  # Derived encoder configs. Small, but must be writable.
+  embeddercache:

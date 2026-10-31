@@ -1,0 +1,103 @@
+{
+  "tag": "d6441ea8-3",
+  "doctor": "dr.d6441ea8-3@solum.test",
+  "patient": "patient.d6441ea8-3@solum.test",
+  "results": [
+    {
+      "ok": true,
+      "label": "doctor landed on /dashboard",
+      "detail": "http://localhost:8080/dashboard"
+    },
+    {
+      "ok": true,
+      "label": "KPI cards render",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "empty state is honest, no invented data",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "the new-patient form asks for an email",
+      "detail": "identity linking"
+    },
+    {
+      "ok": true,
+      "label": "the patient appears in the list",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "the lab value is on screen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "the answer rendered",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "the answer names a value",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "the answer is marked current or corrected",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "the prescription was issued",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "the notification panel opened",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "settings render",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "patient landed on /portal",
+      "detail": "http://localhost:8080/portal"
+    },
+    {
+      "ok": true,
+      "label": "documents are listed",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "the sending doctor is named",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "patient name shown",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "the document opened",
+      "detail": "http://localhost:8333/solum-docs/prescriptions/bab"
+    },
+    {
+      "ok": true,
+      "label": "settings render",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "no uncaught JS errors",
+      "detail": "0 seen"
+    }
+  ],
+  "errors": []
+}

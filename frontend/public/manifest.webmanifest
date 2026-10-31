@@ -1,0 +1,38 @@
+{
+  "name": "SoloPrac - Clinical Records",
+  "short_name": "SoloPrac",
+  "description": "Validity-aware clinical records for solo practitioners and their patients.",
+  "start_url": "/dashboard",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#05070d",
+  "theme_color": "#05070d",
+  "categories": ["medical", "health", "productivity"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Patients",
+      "short_name": "Patients",
+      "url": "/dashboard"
+    },
+    {
+      "name": "My documents",
+      "short_name": "Inbox",
+      "url": "/portal"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "ok": true,
+    "label": "signed in through the UI",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "New prescription is on the record page",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "Weekly report is on the record page",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "the action bar names the patient",
+    "detail": "For Ranveer Thakur 1d97cea8-0New prescriptionWeekly reportCertificateInvoice"
+  },
+  {
+    "ok": true,
+    "label": "New prescription is enabled",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "Weekly report is enabled (patient has records)",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "a patient is preselected, not blank",
+    "detail": "fad3eacf"
+  },
+  {
+    "ok": true,
+    "label": "the preselected patient is the one on screen",
+    "detail": "Ranveer Thakur 1d97cea8-0"
+  },
+  {
+    "ok": true,
+    "label": "the diagnosis field is present",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "the sheet closed after issuing",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "period choices are offered",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "it explains the correction policy",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "the patient is preselected",
+    "detail": "fad3eacf"
+  },
+  {
+    "ok": true,
+    "label": "a report reference was shown",
+    "detail": "opened a PDF tab"
+  },
+  {
+    "ok": true,
+    "label": "the sheet closed after generating",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "a weekly report exists for this patient",
+    "detail": "WEE-20261007-9B4DD0"
+  },
+  {
+    "ok": true,
+    "label": "no console errors",
+    "detail": "0"
+  }
+]

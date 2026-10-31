@@ -1,0 +1,21 @@
+// SoloPrac database schema. Table and column names match
+// backend/app/db/models.py. Validity is never a stored flag: it is
+// derived from the supersedes_id chain at read time.
+// Regenerate: node docs/render-diagrams.mjs
+diagram theme: dark
+
+style table fill: #1a1430 border: #5a4a8a badge: database
+
+node accounts "accounts / (id, email, role, password_hash)" style: table
+node doctors "doctors / (id, account_id, specialty, clinic)" style: table right of accounts
+node patients "patients / (id, display_name, linked emails)" style: table right of doctors gap: wide
+node events "events / (id, patient_id, type, valid_time, / payload, supersedes_id, content_hash)" style: table below patients
+node documents "documents / (id, patient_id, doctor_id, kind, / s3_key, supersedes_id)" style: table below events
+
+edge accounts -> doctors "account_id"
+edge accounts -> patients "linked email"
+edge patients -> events "patient_id, append-only"
+edge events -> events "supersedes_id (self)"
+edge patients -> documents "patient_id"
+edge doctors -> documents "doctor_id"
+edge documents -> events "payload.document_id"

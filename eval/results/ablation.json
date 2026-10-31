@@ -1,0 +1,85 @@
+{
+  "seed": 20260601,
+  "alpha_sweep": {
+    "0.40": {
+      "stale_answer_rate": 0.0,
+      "safe_answer_rate": 0.985,
+      "corrected_accuracy": 0.985,
+      "historical_accuracy": 0.9975
+    },
+    "0.50": {
+      "stale_answer_rate": 0.0,
+      "safe_answer_rate": 0.985,
+      "corrected_accuracy": 0.985,
+      "historical_accuracy": 0.9975
+    },
+    "0.60": {
+      "stale_answer_rate": 0.0,
+      "safe_answer_rate": 0.985,
+      "corrected_accuracy": 0.985,
+      "historical_accuracy": 0.9975
+    },
+    "0.70": {
+      "stale_answer_rate": 0.0,
+      "safe_answer_rate": 0.985,
+      "corrected_accuracy": 0.985,
+      "historical_accuracy": 0.9975
+    },
+    "0.80": {
+      "stale_answer_rate": 0.0,
+      "safe_answer_rate": 0.985,
+      "corrected_accuracy": 0.985,
+      "historical_accuracy": 0.9975
+    },
+    "0.90": {
+      "stale_answer_rate": 0.0,
+      "safe_answer_rate": 0.985,
+      "corrected_accuracy": 0.985,
+      "historical_accuracy": 0.9975
+    },
+    "0.95": {
+      "stale_answer_rate": 0.0,
+      "safe_answer_rate": 0.985,
+      "corrected_accuracy": 0.985,
+      "historical_accuracy": 0.9975
+    }
+  },
+  "counterfactual_same_valid_time": {
+    "valid_time_only_default": {
+      "stale_answer_rate": 0.0,
+      "safe_answer_rate": 1.0,
+      "corrected_accuracy": 1.0,
+      "historical_accuracy": 0.0
+    },
+    "valid_time_only_same_vt": {
+      "stale_answer_rate": 1.0,
+      "safe_answer_rate": 0.0,
+      "corrected_accuracy": 0.0,
+      "historical_accuracy": 0.0
+    },
+    "bitemporal_default": {
+      "stale_answer_rate": 0.07,
+      "safe_answer_rate": 0.875,
+      "corrected_accuracy": 0.875,
+      "historical_accuracy": 0.065
+    },
+    "bitemporal_same_vt": {
+      "stale_answer_rate": 0.7,
+      "safe_answer_rate": 0.245,
+      "corrected_accuracy": 0.245,
+      "historical_accuracy": 0.2
+    },
+    "ours_default": {
+      "stale_answer_rate": 0.0,
+      "safe_answer_rate": 0.985,
+      "corrected_accuracy": 0.985,
+      "historical_accuracy": 0.9975
+    },
+    "ours_same_vt": {
+      "stale_answer_rate": 0.0,
+      "safe_answer_rate": 0.985,
+      "corrected_accuracy": 0.985,
+      "historical_accuracy": 0.0
+    }
+  }
+}

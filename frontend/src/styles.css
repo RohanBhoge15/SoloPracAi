@@ -1,0 +1,492 @@
+/* ============================================================
+   SoloPrac design tokens
+
+   Dark-first. The palette is built around a single idea: a
+   physician must be able to tell at a glance whether a value is
+   trusted or not. Green means current, amber means superseded,
+   and the two are never used for anything else.
+   ============================================================ */
+
+:root {
+  /* Native controls (date picker glyph, calendar popup, scrollbars,
+     select dropdowns) render light by default. Without this the
+     calendar icon is black-on-dark and effectively invisible. */
+  color-scheme: dark;
+  /* surfaces */
+  --bg: #05070d;
+  --bg-2: #080b14;
+  --surface: #0d1220;
+  --surface-2: #121a2c;
+  --surface-3: #182238;
+  --border: #1e2a44;
+  --border-bright: #2a3a5c;
+
+  /* text */
+  --text: #e8eef8;
+  --text-2: #9fb0cc;
+  --text-3: #6b7f9e;
+
+  /* validity semantics - the core of the product */
+  --current: #22d39a;
+  --current-dim: rgba(34, 211, 154, 0.12);
+  --current-glow: rgba(34, 211, 154, 0.35);
+  --superseded: #f5a524;
+  --superseded-dim: rgba(245, 165, 36, 0.12);
+  --superseded-glow: rgba(245, 165, 36, 0.3);
+  --danger: #ff5d5d;
+  --danger-dim: rgba(255, 93, 93, 0.12);
+  --accent: #4d8dff;
+  --accent-dim: rgba(77, 141, 255, 0.12);
+
+  /* type */
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+
+  /* motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --fast: 140ms;
+  --base: 260ms;
+  --slow: 520ms;
+
+  /* shape */
+  --r-sm: 8px;
+  --r: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-2);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+  border: 2px solid var(--bg-2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-bright);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+input,
+textarea {
+  font-family: inherit;
+}
+
+/* ============================================================
+   Layout
+   ============================================================ */
+
+.shell {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Ambient background wash. Fixed and non-interactive so it never
+   triggers layout or repaint work on scroll. */
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.aurora::before,
+.aurora::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.5;
+}
+.aurora::before {
+  width: 620px;
+  height: 620px;
+  background: radial-gradient(circle, rgba(77, 141, 255, 0.22), transparent 70%);
+  top: -180px;
+  left: -120px;
+  animation: drift-a 22s var(--ease-in-out) infinite;
+}
+.aurora::after {
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(circle, rgba(34, 211, 154, 0.16), transparent 70%);
+  bottom: -160px;
+  right: -100px;
+  animation: drift-b 26s var(--ease-in-out) infinite;
+}
+
+@keyframes drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(90px, 70px) scale(1.14); }
+}
+@keyframes drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-70px, -60px) scale(1.1); }
+}
+
+/* fine grid overlay */
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   Nav
+   ============================================================ */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 32px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  background: rgba(5, 7, 13, 0.72);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+}
+
+.brand-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--current), var(--accent));
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  font-weight: 800;
+  color: #04121c;
+  box-shadow: 0 0 18px var(--current-glow);
+}
+
+.nav-links {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.nav-link {
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-2);
+  transition: color var(--fast), background var(--fast);
+}
+.nav-link:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform var(--fast) var(--ease), box-shadow var(--fast),
+    background var(--fast), border-color var(--fast);
+  white-space: nowrap;
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--current), #16b981);
+  color: #04121c;
+  box-shadow: 0 6px 22px rgba(34, 211, 154, 0.24);
+}
+.btn-primary:hover:not(:disabled) {
+  box-shadow: 0 8px 30px rgba(34, 211, 154, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: var(--surface-3);
+  border-color: var(--border-bright);
+}
+
+.btn-sm {
+  padding: 8px 15px;
+  font-size: 13px;
+}
+
+/* ============================================================
+   Cards
+   ============================================================ */
+
+.card {
+  background: linear-gradient(160deg, var(--surface), var(--bg-2));
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-hover {
+  transition: transform var(--base) var(--ease), border-color var(--base),
+    box-shadow var(--base);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-bright);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================================
+   Badges
+   ============================================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.badge-current {
+  background: var(--current-dim);
+  color: var(--current);
+  border: 1px solid rgba(34, 211, 154, 0.3);
+}
+.badge-superseded {
+  background: var(--superseded-dim);
+  color: var(--superseded);
+  border: 1px solid rgba(245, 165, 36, 0.3);
+}
+.badge-accent {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid rgba(77, 141, 255, 0.3);
+}
+.badge-neutral {
+  background: var(--surface-3);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+}
+.badge-danger {
+  background: var(--danger-dim);
+  color: var(--danger);
+  border: 1px solid rgba(255, 93, 93, 0.3);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.dot-pulse {
+  animation: pulse-dot 2s var(--ease-in-out) infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(1.35); }
+}
+
+/* ============================================================
+   Code / record display
+   ============================================================ */
+
+.mono {
+  font-family: var(--mono);
+  font-size: 12.5px;
+}
+
+.record-line {
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.75;
+  color: var(--text-2);
+}
+
+.kbd {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+}
+
+/* ============================================================
+   Spinner
+   ============================================================ */
+
+.spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid var(--border-bright);
+  border-top-color: var(--current);
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   Utilities
+   ============================================================ */
+
+.container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.section {
+  padding: 108px 0;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-2);
+  letter-spacing: 0.02em;
+  margin-bottom: 22px;
+}
+
+.section-title {
+  font-size: clamp(30px, 4.2vw, 46px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+  margin-bottom: 18px;
+}
+
+.section-sub {
+  font-size: 17px;
+  color: var(--text-2);
+  max-width: 640px;
+  line-height: 1.7;
+}
+
+.grad-text {
+  background: linear-gradient(120deg, var(--current), var(--accent) 55%, #a78bfa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .section { padding: 72px 0; }
+  .container { padding: 0 20px; }
+  .nav { padding: 14px 20px; }
+  .nav-links .nav-link { display: none; }
+}

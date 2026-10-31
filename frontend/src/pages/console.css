@@ -1,0 +1,908 @@
+/* ============================================================
+   Console: patient timeline + grounded chat
+   ============================================================ */
+
+/* The patient picker and the add button, which used to live in a
+   hand-rolled nav on this page. They sit in their own row under the
+   shell's topbar now, so the shell keeps the nav, the bell and the
+   account menu. */
+.console-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px 0;
+  /* The picker plus five document buttons cannot share one phone-width
+     row, and `.doc-actions` is `margin-left: auto`, so without wrapping
+     the bar pushed the page into horizontal scroll. */
+  flex-wrap: wrap;
+}
+
+/* Document actions, pinned to the right of the patient picker so they read
+   as acting on the patient currently on screen. */
+.doc-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  /* Five document buttons plus a label will not fit one phone-width row.
+     Without wrapping the whole Records page scrolled sideways, which is
+     how the per-patient document actions were reached on mobile at all. */
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.doc-actions-label {
+  font-size: 12px;
+  color: var(--text-3);
+  white-space: nowrap;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.window-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+/* Invoice line editor. Three columns so a doctor can see description,
+   quantity and rate on one row, the way it will print. */
+.invoice-table {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.invoice-row {
+  display: grid;
+  grid-template-columns: 1fr 62px 84px;
+  gap: 6px;
+  align-items: center;
+}
+
+.invoice-row--head {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-3);
+  padding-bottom: 2px;
+}
+
+.invoice-total {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: var(--surface-2);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.invoice-total > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.invoice-total-grand {
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+  margin-top: 2px;
+  font-size: 15px !important;
+  color: var(--text) !important;
+}
+
+.chip {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 13px;
+  color: var(--text-2);
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.chip:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.chip--on {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.patient-picker {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 13px;
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+  min-width: 180px;
+}
+
+.patient-picker:focus-visible {
+  border-color: var(--accent);
+}
+
+.console {
+  display: grid;
+  /* --split is the doctor's chosen width for the timeline, as a percentage.
+     The old fixed 1fr 1.15fr is what --split defaults to, so a browser that
+     never gets the inline style (or a stylesheet loaded standalone) still
+     lays out as it always did. */
+  grid-template-columns: var(--split, 46.5%) 1fr;
+  gap: 0;
+  /* Two bars above it now: the shell topbar and the console bar. */
+  height: calc(100vh - 108px);
+  min-height: 640px;
+}
+
+/* While dragging, stop the browser from doing anything clever: no text
+   selection either side of the handle, and no transition on the columns
+   that would make the pane lag a few frames behind the cursor. */
+.console[data-splitting="true"] {
+  cursor: col-resize;
+  user-select: none;
+}
+.console[data-splitting="true"] .pane {
+  transition: none;
+}
+
+/* The divider itself. Sits in the grid as its own column so the handle is
+   a real element with a real hit area, rather than a pseudo-element on the
+   chat pane whose edges move with the pane it is attached to. */
+.splitter {
+  position: relative;
+  width: 9px;
+  margin: 0 -4px; /* the visible line stays on the original boundary */
+  cursor: col-resize;
+  background: none;
+  border: none;
+  /* Without this a trackpad drag is claimed as a scroll and the divider
+     stops following the cursor about halfway. */
+  touch-action: none;
+  flex-shrink: 0;
+  z-index: 3;
+}
+
+/* The visible rule. Painted on ::before so the 9px hit area and the 1px
+   line are independent -- a 1px target is unusable. */
+.splitter::before {
+  content: "";
+  position: absolute;
+  inset: 0 4px;
+  background: var(--border);
+  transition: background 120ms ease;
+}
+.splitter:hover::before,
+.splitter:focus-visible::before,
+.console[data-splitting="true"] .splitter::before {
+  background: var(--accent);
+}
+
+/* A visible focus ring. The default outline is clipped by the grid gap and
+   is easy to miss on a 1px-wide control. */
+.splitter:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-radius: 2px;
+}
+
+/* Three dots, revealed on hover/focus/drag. Purely a hint: the divider is
+   usable without ever seeing them, because the cursor already changes. */
+.splitter-grip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 26px;
+  transform: translate(-50%, -50%);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  opacity: 0;
+  transition: opacity 120ms ease;
+  pointer-events: none;
+}
+.splitter:hover .splitter-grip,
+.splitter:focus-visible .splitter-grip,
+.console[data-splitting="true"] .splitter-grip {
+  opacity: 1;
+}
+
+@media (max-width: 1080px) {
+  /* Stacked: there is no divider to move, so it is taken out of the flow
+     rather than left as a 9px dead strip between the panes. */
+  .console { grid-template-columns: 1fr; height: auto; }
+  .splitter { display: none; }
+}
+
+@media (max-width: 720px) {
+  .console-bar { padding: 12px 16px 0; }
+  .patient-picker { min-width: 0; flex: 1 1 100%; }
+  /* Full-width buttons read as a list on a phone and keep every document
+     type reachable without a horizontal swipe. */
+  .doc-actions {
+    flex: 1 1 100%;
+    margin-left: 0;
+    gap: 6px;
+  }
+  .doc-actions .btn { flex: 1 1 calc(50% - 3px); justify-content: center; }
+  .doc-actions-label { flex-basis: 100%; max-width: none; }
+}
+
+/* ── left: timeline ─────────────────────────────────────────── */
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-right: 1px solid var(--border);
+}
+
+.pane--right { border-right: none; }
+
+.pane-head {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  background: var(--bg-2);
+}
+
+.pane-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 24px;
+  min-height: 0;
+}
+
+.patient-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 15px;
+  background: linear-gradient(135deg, var(--accent), var(--current));
+  color: #04121c;
+  flex-shrink: 0;
+}
+
+.patient-name {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+
+.patient-meta {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.stats-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+/* ── image search ────────────────────────────────────────────────────
+   A second retrieval surface beside the record list. Chat reads record
+   text; this reads pixels, so a study is reachable by what it depicts
+   rather than by the words typed next to it. */
+
+.imgsearch {
+  margin-top: 14px;
+}
+
+.imgsearch__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-2);
+  transition: color var(--fast), border-color var(--fast),
+    background var(--fast);
+}
+
+.imgsearch__toggle:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+
+.imgsearch__toggle--on {
+  color: var(--text);
+  background: var(--surface-1);
+  border-color: var(--accent);
+}
+
+.imgsearch__n {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-3);
+}
+
+.imgsearch__panel {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+}
+
+.imgsearch__form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.imgsearch__form .input {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Says which space the ranking came from. A score without this reads as a
+   confidence in the finding, which it is not. */
+.imgsearch__note {
+  margin: 8px 0 0;
+  font-size: 11px;
+  color: var(--text-3);
+}
+
+.imgsearch__err {
+  margin-top: 9px;
+  font-size: 11.5px;
+  color: var(--danger);
+}
+
+.imgsearch__none {
+  margin-top: 10px;
+  padding: 9px 11px;
+  border-radius: 9px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+.imgsearch__hits {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.imgsearch__hit {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 7px 9px;
+  border-radius: 9px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  text-align: left;
+  transition: border-color var(--fast);
+}
+
+.imgsearch__hit:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.imgsearch__hit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.imgsearch__rank {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background: var(--surface-1);
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--text-3);
+}
+
+.imgsearch__cap {
+  flex: 1;
+  min-width: 0;
+  font-size: 12.5px;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.imgsearch__score {
+  flex-shrink: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-3);
+}
+
+/* stat pill */
+.stat {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 6px 11px;
+  border-radius: 9px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: 12px;
+}
+
+.stat b {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+}
+.stat--current b { color: var(--current); }
+.stat--superseded b { color: var(--superseded); }
+
+/* ── correction pairs ───────────────────────────────────────── */
+
+.group-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin: 22px 0 11px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.group-label:first-child { margin-top: 0; }
+
+.pair {
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 11px;
+  background: var(--surface);
+}
+
+.pair-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pair-row:last-child { border-bottom: none; }
+
+.pair-row--stale {
+  background: var(--superseded-dim);
+}
+
+.pair-row--current {
+  background: var(--current-dim);
+}
+
+.pair-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 0;
+  font-size: 10.5px;
+  color: var(--text-3);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  background: var(--bg-2);
+}
+
+.pair-body {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pair-value {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.pair-date {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--text-3);
+  flex-shrink: 0;
+}
+
+/* plain events */
+.ev {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 13px;
+  border-radius: 11px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  margin-bottom: 7px;
+  font-size: 13px;
+  transition: border-color var(--fast);
+}
+.ev:hover { border-color: var(--border-bright); }
+
+.ev-type {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: var(--surface-3);
+  color: var(--text-3);
+  flex-shrink: 0;
+}
+
+.ev-summary {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-2);
+}
+
+/* ── right: chat ────────────────────────────────────────────── */
+
+.chat-log {
+  flex: 1;
+  overflow-y: auto;
+  padding: 22px 24px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.empty {
+  margin: auto;
+  text-align: center;
+  max-width: 380px;
+  padding: 30px;
+}
+
+.empty-icon {
+  font-size: 34px;
+  margin-bottom: 14px;
+  opacity: 0.5;
+}
+
+.empty h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.empty p {
+  font-size: 13.5px;
+  color: var(--text-3);
+  line-height: 1.65;
+}
+
+.suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.suggestion {
+  padding: 11px 14px;
+  border-radius: 11px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  text-align: left;
+  color: var(--text-2);
+  transition: all var(--fast);
+}
+.suggestion:hover {
+  background: var(--surface-3);
+  border-color: var(--accent);
+  color: var(--text);
+  transform: translateX(3px);
+}
+
+.msg { display: flex; flex-direction: column; gap: 7px; }
+
+.msg-role {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.bubble {
+  padding: 13px 16px;
+  border-radius: 13px;
+  font-size: 14px;
+  line-height: 1.68;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.bubble--user {
+  background: var(--accent-dim);
+  border: 1px solid rgba(77, 141, 255, 0.25);
+  align-self: flex-end;
+  max-width: 82%;
+}
+
+.bubble--ai {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.bubble strong {
+  color: var(--current);
+  font-weight: 700;
+}
+
+/* meta row under an answer */
+.answer-meta {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* citation chips */
+.cites {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cite {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all var(--fast);
+  max-width: 300px;
+  text-align: left;
+}
+.cite:hover {
+  border-color: var(--border-bright);
+  background: var(--surface-3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.cite:active { transform: translateY(0); }
+
+.cite::after {
+  content: "→";
+  opacity: 0;
+  transition: opacity var(--fast);
+  flex-shrink: 0;
+}
+.cite:hover::after { opacity: 0.65; }
+
+/* A citation whose record is not in the loaded timeline. It must not look
+   clickable: the arrow and the lift are the affordance, and a chip that
+   invites a click and swallows it is worse than one that admits it cannot
+   open. Colour is kept so validity stays readable. */
+.cite:disabled,
+.cite[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.55;
+  filter: saturate(0.5);
+}
+.cite:disabled:hover,
+.cite[aria-disabled="true"]:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: inherit;
+}
+.cite:disabled::after,
+.cite[aria-disabled="true"]::after {
+  content: "·";
+  opacity: 0.5;
+}
+
+.cite--current {
+  border-color: rgba(34, 211, 154, 0.3);
+  color: var(--current);
+  background: var(--current-dim);
+}
+.cite--current:hover {
+  border-color: var(--current);
+  background: rgba(34, 211, 154, 0.2);
+}
+.cite--superseded {
+  border-color: rgba(245, 165, 36, 0.3);
+  color: var(--superseded);
+  background: var(--superseded-dim);
+}
+.cite--superseded:hover {
+  border-color: var(--superseded);
+  background: rgba(245, 165, 36, 0.2);
+}
+
+.cite-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* suppression notice — the "we caught it" panel */
+.caught {
+  padding: 11px 13px;
+  border-radius: 11px;
+  background: var(--superseded-dim);
+  border: 1px solid rgba(245, 165, 36, 0.3);
+  font-size: 12.5px;
+  color: var(--superseded);
+  line-height: 1.6;
+}
+
+.caught b {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* composer */
+.composer {
+  padding: 16px 24px 20px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-2);
+  flex-shrink: 0;
+}
+
+.composer-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.composer textarea {
+  flex: 1;
+  resize: none;
+  padding: 12px 15px;
+  border-radius: 13px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.55;
+  min-height: 46px;
+  max-height: 130px;
+  outline: none;
+  transition: border-color var(--fast);
+}
+.composer textarea:focus { border-color: var(--accent); }
+.composer textarea::placeholder { color: var(--text-3); }
+
+.send {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--current), #16b981);
+  color: #04121c;
+  font-size: 17px;
+  flex-shrink: 0;
+  transition: all var(--fast);
+}
+.send:disabled { opacity: 0.4; cursor: not-allowed; }
+.send:not(:disabled):hover { transform: scale(1.05); }
+
+.composer-foot {
+  margin-top: 9px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-3);
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* as-of toggle */
+.asof-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-3);
+  cursor: pointer;
+  user-select: none;
+}
+.asof-toggle input { accent-color: var(--accent); cursor: pointer; }
+
+/* banner when API is down */
+.banner {
+  padding: 11px 24px;
+  background: var(--danger-dim);
+  border-bottom: 1px solid rgba(255, 93, 93, 0.3);
+  color: var(--danger);
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+/* Offline dictation button. Sits with the send button; red pulse while
+   the mic is live so the state is visible without reading anything. */
+.mic {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  flex-shrink: 0;
+  transition: all var(--fast);
+}
+.mic:not(:disabled):hover { border-color: var(--accent); color: var(--text); }
+.mic:disabled { opacity: 0.4; cursor: not-allowed; }
+.mic.on {
+  background: var(--danger-dim);
+  border-color: #ef4444;
+  color: #ef4444;
+  animation: mic-pulse 1.6s ease-in-out infinite;
+}
+@keyframes mic-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.35); }
+  50% { box-shadow: 0 0 0 7px rgba(239, 68, 68, 0); }
+}
+.stt-live { color: #ef4444; }
+.stt-err { color: var(--superseded); }

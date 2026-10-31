@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1740" height="322" viewBox="0 0 1740 322" font-family="'DejaVu Sans Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace" font-size="14px">
+  <defs>
+    <marker id="r19289948-arrow-5c5c7c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5c5c7c"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1740" height="322" fill="#111111"/>
+  <path d="M48 40 H270 a8 8 0 0 1 8 8 V98 a8 8 0 0 1 -8 8 H48 a8 8 0 0 1 -8 -8 V48 a8 8 0 0 1 8 -8 Z" fill="#191728" stroke="#4f5367"/>
+  <text x="159" y="68.4" fill="#d9d9d9" text-anchor="middle">doctor asks</text>
+  <text x="159" y="87.4" fill="#d9d9d9" text-anchor="middle">(any wording, any time T)</text>
+  <path d="M459.4 40 H707.4 a8 8 0 0 1 8 8 V98 a8 8 0 0 1 -8 8 H459.4 a8 8 0 0 1 -8 -8 V48 a8 8 0 0 1 8 -8 Z" fill="#191728" stroke="#4f5367"/>
+  <text x="583.4" y="68.4" fill="#d9d9d9" text-anchor="middle">parse temporal intent</text>
+  <text x="583.4" y="87.4" fill="#d9d9d9" text-anchor="middle">(as-of T? current? summary?)</text>
+  <path d="M879.8 40 H1152.8 a8 8 0 0 1 8 8 V98 a8 8 0 0 1 -8 8 H879.8 a8 8 0 0 1 -8 -8 V48 a8 8 0 0 1 8 -8 Z" fill="#191728" stroke="#4f5367"/>
+  <text x="1016.3" y="68.4" fill="#d9d9d9" text-anchor="middle">validity-aware retrieval</text>
+  <text x="1016.3" y="87.4" fill="#d9d9d9" text-anchor="middle">(k=8, k=30 summary, alpha 0.70)</text>
+  <path d="M1376.2 40 H1691.2 a8 8 0 0 1 8 8 V98 a8 8 0 0 1 -8 8 H1376.2 a8 8 0 0 1 -8 -8 V48 a8 8 0 0 1 8 -8 Z" fill="#191728" stroke="#4f5367"/>
+  <text x="1533.7" y="68.4" fill="#d9d9d9" text-anchor="middle">two-axis provenance check</text>
+  <text x="1533.7" y="87.4" fill="#d9d9d9" text-anchor="middle">(citation correct? claim supported?)</text>
+  <path d="M1384.7 216 H1682.7 a8 8 0 0 1 8 8 V274 a8 8 0 0 1 -8 8 H1384.7 a8 8 0 0 1 -8 -8 V224 a8 8 0 0 1 8 -8 Z" fill="#191728" stroke="#4f5367"/>
+  <text x="1533.7" y="244.4" fill="#d9d9d9" text-anchor="middle">LLM chain on de-identified extract</text>
+  <text x="1533.7" y="263.4" fill="#d9d9d9" text-anchor="middle">(groq -&gt; openrouter -&gt; opencode)</text>
+  <path d="M518.4 216 H724.4 a8 8 0 0 1 8 8 V274 a8 8 0 0 1 -8 8 H518.4 a8 8 0 0 1 -8 -8 V224 a8 8 0 0 1 8 -8 Z" fill="#191728" stroke="#4f5367"/>
+  <text x="621.4" y="244.4" fill="#d9d9d9" text-anchor="middle">collapse identical rows</text>
+  <text x="621.4" y="263.4" fill="#d9d9d9" text-anchor="middle">(one chip per entity)</text>
+  <path d="M48 216 H371 a8 8 0 0 1 8 8 V274 a8 8 0 0 1 -8 8 H48 a8 8 0 0 1 -8 -8 V224 a8 8 0 0 1 8 -8 Z" fill="#191728" stroke="#4f5367"/>
+  <text x="209.5" y="244.4" fill="#d9d9d9" text-anchor="middle">grounded answer + citations</text>
+  <text x="209.5" y="263.4" fill="#d9d9d9" text-anchor="middle">(or abstention: text, zero citations)</text>
+  <line x1="278" y1="73" x2="451.4" y2="73" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r19289948-arrow-5c5c7c)"/>
+  <rect x="309.2" y="63.5" width="111" height="19" fill="#111111"/>
+  <text x="364.7" y="77.9" fill="#d9d9d9" text-anchor="middle">raw question</text>
+  <line x1="715.4" y1="73" x2="871.8" y2="73" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r19289948-arrow-5c5c7c)"/>
+  <rect x="746.6" y="63.5" width="94" height="19" fill="#111111"/>
+  <text x="793.6" y="77.9" fill="#d9d9d9" text-anchor="middle">intent + T</text>
+  <line x1="1160.8" y1="73" x2="1368.2" y2="73" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r19289948-arrow-5c5c7c)"/>
+  <rect x="1192" y="63.5" width="145" height="19" fill="#111111"/>
+  <text x="1264.5" y="77.9" fill="#d9d9d9" text-anchor="middle">top-k + validity</text>
+  <line x1="1533.7" y1="106" x2="1533.7" y2="216" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r19289948-arrow-5c5c7c)"/>
+  <rect x="1461.2" y="151.5" width="145" height="19" fill="#111111"/>
+  <text x="1533.7" y="165.9" fill="#d9d9d9" text-anchor="middle">verified extract</text>
+  <line x1="1376.7" y1="249" x2="732.4" y2="249" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r19289948-arrow-5c5c7c)"/>
+  <rect x="978.05" y="239.5" width="153" height="19" fill="#111111"/>
+  <text x="1054.55" y="253.9" fill="#d9d9d9" text-anchor="middle">draft with claims</text>
+  <line x1="510.4" y1="249" x2="379" y2="249" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r19289948-arrow-5c5c7c)"/>
+  <rect x="410.2" y="239.5" width="69" height="19" fill="#111111"/>
+  <text x="444.7" y="253.9" fill="#d9d9d9" text-anchor="middle">deduped</text>
+</svg>

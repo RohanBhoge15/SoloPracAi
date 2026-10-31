@@ -1,0 +1,438 @@
+/* ============================================================
+   Authoring: new patient, new record, correct a record
+   ============================================================ */
+
+.sheet-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(2, 4, 9, 0.72);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.sheet {
+  position: fixed;
+  z-index: 201;
+  top: 0;
+  right: 0;
+  width: min(520px, 96vw);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(200deg, var(--surface), var(--bg) 55%);
+  border-left: 1px solid var(--border-bright);
+  box-shadow: -30px 0 70px rgba(0, 0, 0, 0.65);
+}
+
+.sheet-head {
+  padding: 22px 26px 18px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.sheet-title {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.sheet-sub {
+  font-size: 12.5px;
+  color: var(--text-3);
+  margin-top: 5px;
+  line-height: 1.5;
+}
+
+.sheet-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 26px;
+  min-height: 0;
+}
+
+.sheet-foot {
+  padding: 16px 26px 20px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-2);
+  flex-shrink: 0;
+  display: flex;
+  gap: 9px;
+  align-items: center;
+}
+
+/* ── form fields ────────────────────────────────────────────── */
+
+.field {
+  margin-bottom: 15px;
+}
+
+.field-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 7px;
+}
+
+.field-hint {
+  font-size: 11.5px;
+  color: var(--text-3);
+  margin-top: 5px;
+  line-height: 1.5;
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: 11px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color var(--fast), background var(--fast);
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--text-3);
+}
+
+.select {
+  cursor: pointer;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--text-3) 50%),
+    linear-gradient(135deg, var(--text-3) 50%, transparent 50%);
+  background-position: calc(100% - 17px) 50%, calc(100% - 12px) 50%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 34px;
+}
+
+.select option {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 78px;
+  line-height: 1.55;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+}
+
+.field-row--3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* Document-kind picker on the capture sheet.
+   Deliberately not reusing `.auth-tabs`: that lives in pages/auth.css, which
+   only loads with the sign-in page. A capture sheet opened straight from a
+   deep link would have rendered this unstyled. */
+.seg {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  margin-bottom: 18px;
+}
+
+.seg__btn {
+  padding: 9px 6px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-3);
+  transition: color var(--fast), background var(--fast);
+  white-space: nowrap;
+}
+
+.seg__btn.on {
+  background: var(--surface-1);
+  color: var(--text);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.16);
+}
+
+.img-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin-bottom: 16px;
+}
+
+/* segmented type picker */
+.type-picker {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+
+.type-opt {
+  padding: 10px 8px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-2);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-2);
+  text-transform: capitalize;
+  transition: all var(--fast);
+}
+.type-opt:hover {
+  border-color: var(--border-bright);
+  color: var(--text);
+}
+.type-opt--on {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+/* the record being corrected, shown above the correction form */
+.supersede-target {
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--superseded-dim);
+  border: 1px solid rgba(245, 165, 36, 0.3);
+  margin-bottom: 18px;
+}
+
+.supersede-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--superseded);
+  margin-bottom: 8px;
+}
+
+.supersede-value {
+  font-family: var(--mono);
+  font-size: 19px;
+  font-weight: 700;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--superseded);
+  color: var(--text-2);
+}
+
+.supersede-note {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-top: 9px;
+  line-height: 1.55;
+}
+
+.callout {
+  padding: 12px 14px;
+  border-radius: 11px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.callout--info {
+  background: var(--accent-dim);
+  border: 1px solid rgba(77, 141, 255, 0.28);
+  color: #a8c6ff;
+}
+
+.callout--warn {
+  background: var(--superseded-dim);
+  border: 1px solid rgba(245, 165, 36, 0.3);
+  color: var(--superseded);
+}
+
+.callout b {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* error */
+.err {
+  padding: 11px 13px;
+  border-radius: 10px;
+  background: var(--danger-dim);
+  border: 1px solid rgba(255, 93, 93, 0.3);
+  color: var(--danger);
+  font-size: 12.5px;
+  margin-bottom: 15px;
+  line-height: 1.55;
+}
+
+/* ── action buttons on the timeline ─────────────────────────── */
+
+.fab {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  z-index: 20;
+  display: flex;
+  gap: 10px;
+}
+
+/* Icon-only buttons are unreadable without hover tooltips, which touch
+   screens do not have. Each action carries a permanent one-word label,
+   so "upload a scan" vs "type a record" needs no guessing. */
+.fab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.fab-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.fab-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 19px;
+  background: linear-gradient(135deg, var(--current), #16b981);
+  color: #04121c;
+  box-shadow: 0 8px 24px rgba(34, 211, 154, 0.34);
+  transition: all var(--fast) var(--ease);
+}
+.fab-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 12px 32px rgba(34, 211, 154, 0.5);
+}
+.fab-btn:active { transform: scale(0.96); }
+
+.fab-btn--ghost {
+  background: var(--surface-2);
+  border: 1px solid var(--border-bright);
+  color: var(--text);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+.fab-btn--ghost:hover {
+  background: var(--surface-3);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+}
+
+/* empty state action */
+.empty-cta {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+/* success flash */
+.toast {
+  position: fixed;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 300;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--current);
+  color: var(--current);
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+/* dropzone */
+.drop {
+  padding: 26px 20px;
+  border-radius: var(--r);
+  border: 1.5px dashed var(--border-bright);
+  background: var(--bg-2);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--fast);
+}
+.drop:hover,
+.drop--over {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.drop-icon { font-size: 26px; margin-bottom: 9px; }
+.drop-title { font-size: 13.5px; font-weight: 600; margin-bottom: 4px; }
+.drop-hint { font-size: 11.5px; color: var(--text-3); }
+
+.preview {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 11px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+.preview-title {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 7px;
+}
+
+/* confidence meter */
+.meter {
+  height: 5px;
+  border-radius: 3px;
+  background: var(--surface-3);
+  overflow: hidden;
+  margin: 9px 0 7px;
+}
+.meter-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width var(--base) var(--ease);
+}
+.meter-fill--ok { background: var(--current); }
+.meter-fill--low { background: var(--danger); }
+
+.meter-legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10.5px;
+  color: var(--text-3);
+  font-family: var(--mono);
+}
+
+@media (max-width: 560px) {
+  .field-row,
+  .field-row--3,
+  .type-picker { grid-template-columns: 1fr; }
+}

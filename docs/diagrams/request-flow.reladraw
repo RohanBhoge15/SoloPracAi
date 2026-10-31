@@ -1,0 +1,20 @@
+// SoloPrac chat / retrieval request flow. Stage names match
+// backend/app/services/: intent in retrieval.py, rank in retrieval.py,
+// verify in provenance.py, answer in pipeline.py, collapse in collapse.py.
+// Regenerate: node docs/render-diagrams.mjs
+diagram theme: dark
+
+node q "doctor asks / (any wording, any time T)"
+node intent "parse temporal intent / (as-of T? current? summary?)" right of q
+node retrieve "validity-aware retrieval / (k=8, k=30 summary, alpha 0.70)" right of intent gap: wide
+node verify "two-axis provenance check / (citation correct? claim supported?)" right of retrieve gap: wide
+node llm "LLM chain on de-identified extract / (groq -> openrouter -> opencode)" below verify
+node collapse "collapse identical rows / (one chip per entity)" left of llm
+node answer "grounded answer + citations / (or abstention: text, zero citations)" left of collapse
+
+edge q -> intent "raw question"
+edge intent -> retrieve "intent + T"
+edge retrieve -> verify "top-k + validity"
+edge verify -> llm "verified extract"
+edge llm -> collapse "draft with claims"
+edge collapse -> answer "deduped"

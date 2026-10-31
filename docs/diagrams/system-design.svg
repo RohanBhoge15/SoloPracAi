@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1917" height="470" viewBox="0 0 1917 470" font-family="'DejaVu Sans Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace" font-size="14px">
+  <defs>
+    <marker id="r770a858b-arrow-5c5c7c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5c5c7c"/>
+    </marker>
+    <mask id="r770a858b-cut-1" maskUnits="userSpaceOnUse" x="0" y="0" width="1917" height="470">
+      <rect x="0" y="0" width="1917" height="470" fill="white"/>
+      <circle cx="947.44" cy="130" r="6.2" fill="black"/>
+      <circle cx="805.73" cy="166.08" r="6.2" fill="black"/>
+      <circle cx="1092.84" cy="130" r="6.2" fill="black"/>
+      <circle cx="1241.53" cy="130" r="6.2" fill="black"/>
+      <circle cx="1351.15" cy="120.54" r="6.2" fill="black"/>
+    </mask>
+    <mask id="r770a858b-cut-2" maskUnits="userSpaceOnUse" x="0" y="0" width="1917" height="470">
+      <rect x="0" y="0" width="1917" height="470" fill="white"/>
+      <circle cx="1265.34" cy="149.33" r="6.2" fill="black"/>
+      <circle cx="1367.54" cy="124.87" r="6.2" fill="black"/>
+    </mask>
+    <mask id="r770a858b-cut-3" maskUnits="userSpaceOnUse" x="0" y="0" width="1917" height="470">
+      <rect x="0" y="0" width="1917" height="470" fill="white"/>
+      <circle cx="1171.3" cy="130" r="6.2" fill="black"/>
+      <circle cx="1170.51" cy="172.03" r="6.2" fill="black"/>
+    </mask>
+  </defs>
+  <rect x="0" y="0" width="1917" height="470" fill="#111111"/>
+  <path d="M48 40 H287 a8 8 0 0 1 8 8 V98 a8 8 0 0 1 -8 8 H48 a8 8 0 0 1 -8 -8 V48 a8 8 0 0 1 8 -8 Z" fill="#191728" stroke="#4f5367"/>
+  <text x="167.5" y="68.4" fill="#d9d9d9" text-anchor="middle">SoloPrac PWA</text>
+  <text x="167.5" y="87.4" fill="#d9d9d9" text-anchor="middle">(Vite SPA + service worker)</text>
+  <path d="M468.4 40 H716.4 a8 8 0 0 1 8 8 V98 a8 8 0 0 1 -8 8 H468.4 a8 8 0 0 1 -8 -8 V48 a8 8 0 0 1 8 -8 Z" fill="#191728" stroke="#4f5367"/>
+  <text x="592.4" y="68.4" fill="#d9d9d9" text-anchor="middle">nginx :8080</text>
+  <text x="592.4" y="87.4" fill="#d9d9d9" text-anchor="middle">(serves dist, proxies /api/)</text>
+  <path d="M1006.8 40 H1335.8 a8 8 0 0 1 8 8 V98 a8 8 0 0 1 -8 8 H1006.8 a8 8 0 0 1 -8 -8 V48 a8 8 0 0 1 8 -8 Z" fill="#14283d" stroke="#486584"/>
+  <text x="1147.3" y="68.4" fill="#d9d9d9" text-anchor="middle">FastAPI :8000</text>
+  <text x="1147.3" y="87.4" fill="#d9d9d9" text-anchor="middle">(auth, chat, capture, documents)</text>
+  <g transform="translate(1291.8 54) scale(1.58333)">
+    <path d="M12 2.6 L20.4 6.800000000000001 L12 11 L3.5999999999999996 6.800000000000001 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3.5999999999999996 6.800000000000001 L12 11 L12 19.400000000000002 L3.5999999999999996 15.200000000000001 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M20.4 6.800000000000001 L12 11 L12 19.400000000000002 L20.4 15.200000000000001 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+  </g>
+  <path d="M1461.8 40 H1706.8 a8 8 0 0 1 8 8 V98 a8 8 0 0 1 -8 8 H1461.8 a8 8 0 0 1 -8 -8 V48 a8 8 0 0 1 8 -8 Z" fill="#14283d" stroke="#486584"/>
+  <text x="1560.3" y="68.4" fill="#d9d9d9" text-anchor="middle">worker</text>
+  <text x="1560.3" y="87.4" fill="#d9d9d9" text-anchor="middle">(deep reads, OCR jobs)</text>
+  <g transform="translate(1662.8 54) scale(1.58333)">
+    <path d="M12 2.6 L20.4 6.800000000000001 L12 11 L3.5999999999999996 6.800000000000001 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3.5999999999999996 6.800000000000001 L12 11 L12 19.400000000000002 L3.5999999999999996 15.200000000000001 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M20.4 6.800000000000001 L12 11 L12 19.400000000000002 L20.4 15.200000000000001 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+  </g>
+  <path d="M436.4 187.4 H748.4 a8 8 0 0 1 8 8 V245.4 a8 8 0 0 1 -8 8 H436.4 a8 8 0 0 1 -8 -8 V195.4 a8 8 0 0 1 8 -8 Z" fill="#142814" stroke="#486544"/>
+  <text x="568.4" y="215.8" fill="#d9d9d9" text-anchor="middle">postgres</text>
+  <text x="568.4" y="234.8" fill="#d9d9d9" text-anchor="middle">(append-only events, accounts)</text>
+  <g transform="translate(704.4 201.4) scale(1.58333)">
+    <path d="M3 6.4 v11.2 a9 3.4 0 0 0 18 0 v-11.2 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 6.4 a9 3.4 0 0 1 18 0 a9 3.4 0 0 1 -18 0 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 11 a9 3.4 0 0 0 18 0" fill="none" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 15.6 a9 3.4 0 0 0 18 0" fill="none" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+  </g>
+  <path d="M820.4 187.4 H1116.4 a8 8 0 0 1 8 8 V245.4 a8 8 0 0 1 -8 8 H820.4 a8 8 0 0 1 -8 -8 V195.4 a8 8 0 0 1 8 -8 Z" fill="#142814" stroke="#486544"/>
+  <text x="944.4" y="215.8" fill="#d9d9d9" text-anchor="middle">redis</text>
+  <text x="944.4" y="234.8" fill="#d9d9d9" text-anchor="middle">(job + notification streams)</text>
+  <g transform="translate(1072.4 201.4) scale(1.58333)">
+    <path d="M3 6.4 v11.2 a9 3.4 0 0 0 18 0 v-11.2 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 6.4 a9 3.4 0 0 1 18 0 a9 3.4 0 0 1 -18 0 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 11 a9 3.4 0 0 0 18 0" fill="none" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 15.6 a9 3.4 0 0 0 18 0" fill="none" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+  </g>
+  <path d="M1188.4 187.4 H1517.4 a8 8 0 0 1 8 8 V245.4 a8 8 0 0 1 -8 8 H1188.4 a8 8 0 0 1 -8 -8 V195.4 a8 8 0 0 1 8 -8 Z" fill="#142814" stroke="#486544"/>
+  <text x="1328.9" y="215.8" fill="#d9d9d9" text-anchor="middle">qdrant</text>
+  <text x="1328.9" y="234.8" fill="#d9d9d9" text-anchor="middle">(MedCPT 768-d, BiomedCLIP 512-d)</text>
+  <g transform="translate(1473.4 201.4) scale(1.58333)">
+    <path d="M3 6.4 v11.2 a9 3.4 0 0 0 18 0 v-11.2 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 6.4 a9 3.4 0 0 1 18 0 a9 3.4 0 0 1 -18 0 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 11 a9 3.4 0 0 0 18 0" fill="none" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 15.6 a9 3.4 0 0 0 18 0" fill="none" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+  </g>
+  <path d="M1589.4 187.4 H1868.4 a8 8 0 0 1 8 8 V245.4 a8 8 0 0 1 -8 8 H1589.4 a8 8 0 0 1 -8 -8 V195.4 a8 8 0 0 1 8 -8 Z" fill="#142814" stroke="#486544"/>
+  <text x="1704.9" y="215.8" fill="#d9d9d9" text-anchor="middle">seaweedfs :8333</text>
+  <text x="1704.9" y="234.8" fill="#d9d9d9" text-anchor="middle">(prescription + scan PDFs)</text>
+  <g transform="translate(1824.4 201.4) scale(1.58333)">
+    <path d="M12 2.6 L22 7.4 L12 12.2 L2 7.4 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M2 7.4 L12 12.2 L12 21 L2 16.2 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M22 7.4 L12 12.2 L12 21 L22 16.2 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+  </g>
+  <path d="M806.9 363.4 H1129.9 a8 8 0 0 1 8 8 V421.4 a8 8 0 0 1 -8 8 H806.9 a8 8 0 0 1 -8 -8 V371.4 a8 8 0 0 1 8 -8 Z" fill="#191728" stroke="#4f5367"/>
+  <text x="968.4" y="391.8" fill="#d9d9d9" text-anchor="middle">LLM chain, de-identified prompts only</text>
+  <text x="968.4" y="410.8" fill="#d9d9d9" text-anchor="middle">(groq -&gt; openrouter -&gt; opencode)</text>
+  <line x1="295" y1="73" x2="460.4" y2="73" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r770a858b-arrow-5c5c7c)"/>
+  <rect x="326.2" y="63.5" width="103" height="19" fill="#111111"/>
+  <text x="377.7" y="77.9" fill="#d9d9d9" text-anchor="middle">HTTPS :8080</text>
+  <line x1="724.4" y1="73" x2="998.8" y2="73" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r770a858b-arrow-5c5c7c)"/>
+  <rect x="755.6" y="63.5" width="212" height="19" fill="#111111"/>
+  <text x="861.6" y="77.9" fill="#d9d9d9" text-anchor="middle">/api/, unbuffered stream</text>
+  <line x1="1041.7" y1="106" x2="722" y2="187.4" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r770a858b-arrow-5c5c7c)"/>
+  <rect x="847.35" y="137.2" width="69" height="19" fill="#111111"/>
+  <text x="881.85" y="151.6" fill="#d9d9d9" text-anchor="middle">asyncpg</text>
+  <line x1="1125.87" y1="106" x2="1013.83" y2="187.4" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r770a858b-arrow-5c5c7c)"/>
+  <rect x="1035.35" y="137.2" width="69" height="19" fill="#111111"/>
+  <text x="1069.85" y="151.6" fill="#d9d9d9" text-anchor="middle">streams</text>
+  <line x1="1211.96" y1="106" x2="1312.24" y2="187.4" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r770a858b-arrow-5c5c7c)"/>
+  <rect x="1227.6" y="137.2" width="69" height="19" fill="#111111"/>
+  <text x="1262.1" y="151.6" fill="#d9d9d9" text-anchor="middle">vectors</text>
+  <line x1="1296.14" y1="106" x2="1604.06" y2="187.4" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r770a858b-arrow-5c5c7c)"/>
+  <rect x="1415.6" y="137.2" width="69" height="19" fill="#111111"/>
+  <text x="1450.1" y="151.6" fill="#d9d9d9" text-anchor="middle">S3 PDFs</text>
+  <path d="M 1453.8 73 L 1453.8 73 C 1380.08 73, 1380.08 130, 1306.36 130 L 836.75 130 C 802.18 130, 802.18 220.4, 767.6 220.4 L 756.4 220.4" fill="none" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r770a858b-arrow-5c5c7c)" mask="url(#r770a858b-cut-1)"/>
+  <rect x="1111.07" y="120.5" width="78" height="19" fill="#111111"/>
+  <text x="1150.07" y="134.9" fill="#d9d9d9" text-anchor="middle">jobs out</text>
+  <line x1="1453.8" y1="104.23" x2="1106.29" y2="187.4" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r770a858b-arrow-5c5c7c)" mask="url(#r770a858b-cut-2)"/>
+  <rect x="1303.57" y="122.43" width="69" height="19" fill="#111111"/>
+  <text x="1338.07" y="136.83" fill="#d9d9d9" text-anchor="middle">jobs in</text>
+  <path d="M 1171.3 106 L 1171.3 134.01 C 1171.3 178.53, 1169.1 178.53, 1169.1 223.05 L 1169.1 279.9 C 1169.1 344.24, 1160.15 396.4, 1149.1 396.4 L 1137.9 396.4" fill="none" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r770a858b-arrow-5c5c7c)" mask="url(#r770a858b-cut-3)"/>
+  <rect x="1063.1" y="270.4" width="212" height="19" fill="#111111"/>
+  <text x="1169.1" y="284.8" fill="#d9d9d9" text-anchor="middle">no PII crosses this line</text>
+</svg>

@@ -1,0 +1,4279 @@
+{
+  "benchmark": {
+    "name": "TAP-QA",
+    "seed": 20260601,
+    "patients": 277,
+    "records": 4500,
+    "queries": 850,
+    "by_kind": {
+      "unchanged": 200,
+      "corrected": 200,
+      "historical": 400,
+      "contradiction": 50
+    }
+  },
+  "generated_at": "2026-10-06T15:34:44.644423+00:00",
+  "methods": [
+    {
+      "key": "random",
+      "label": "Random floor",
+      "family": "floor",
+      "params": {},
+      "sweep_of": null,
+      "n_total": 850,
+      "stale_answer_rate": 0.17,
+      "historical_accuracy": 0.0925,
+      "corrected_accuracy": 0.045,
+      "unchanged_accuracy": 0.075,
+      "contradiction_detection": 1.0,
+      "r1": 0.07411764705882352,
+      "r5": 0.3247058823529412,
+      "mrr": 0.22273102581871476,
+      "ndcg10": 0.4524036509579235,
+      "tied_positions": 0,
+      "queries_with_ties": 0,
+      "latency_p50_ms": 0.011799999811046291,
+      "latency_p95_ms": 0.015400000188492413,
+      "stale_answer_rate_ci": {
+        "point": 0.17,
+        "ci": [
+          0.12427907911660299,
+          0.22815883629812056
+        ],
+        "n": 200,
+        "successes": 34
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0925,
+        "ci": [
+          0.06785393449362367,
+          0.12489858539243195
+        ],
+        "n": 400,
+        "successes": 37
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.075,
+        "ci": [
+          0.04597491717914433,
+          0.12004361024890872
+        ],
+        "n": 200,
+        "successes": 15
+      },
+      "corrected_accuracy_ci": {
+        "point": 0.045,
+        "ci": [
+          0.023852542998028546,
+          0.08329670401318119
+        ],
+        "n": 200,
+        "successes": 9
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "lexical",
+      "label": "Token overlap",
+      "family": "floor",
+      "params": {},
+      "sweep_of": null,
+      "n_total": 850,
+      "stale_answer_rate": 1.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 0.0,
+      "unchanged_accuracy": 0.975,
+      "contradiction_detection": 1.0,
+      "r1": 0.22941176470588234,
+      "r5": 1.0,
+      "mrr": 0.737764705882353,
+      "ndcg10": 0.8082751970335095,
+      "tied_positions": 11249,
+      "queries_with_ties": 850,
+      "latency_p50_ms": 0.061200000118333264,
+      "latency_p95_ms": 0.0932099997953628,
+      "stale_answer_rate_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.975,
+        "ci": [
+          0.9428216595830936,
+          0.9892752803502589
+        ],
+        "n": 200,
+        "successes": 195
+      },
+      "corrected_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "dense",
+      "label": "Dense-only (no temporal term)",
+      "family": "semantic",
+      "params": {},
+      "sweep_of": null,
+      "n_total": 850,
+      "stale_answer_rate": 0.495,
+      "historical_accuracy": 0.4575,
+      "corrected_accuracy": 0.505,
+      "unchanged_accuracy": 0.975,
+      "contradiction_detection": 1.0,
+      "r1": 0.5870588235294117,
+      "r5": 1.0,
+      "mrr": 0.7911764705882353,
+      "ndcg10": 0.845719180236602,
+      "tied_positions": 284,
+      "queries_with_ties": 250,
+      "latency_p50_ms": 6.903550000060932,
+      "latency_p95_ms": 16.85731500006113,
+      "stale_answer_rate_ci": {
+        "point": 0.495,
+        "ci": [
+          0.4264584535832876,
+          0.5637299996805719
+        ],
+        "n": 200,
+        "successes": 99
+      },
+      "historical_accuracy_ci": {
+        "point": 0.4575,
+        "ci": [
+          0.4093135795806857,
+          0.5064949654381055
+        ],
+        "n": 400,
+        "successes": 183
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.975,
+        "ci": [
+          0.9428216595830936,
+          0.9892752803502589
+        ],
+        "n": 200,
+        "successes": 195
+      },
+      "corrected_accuracy_ci": {
+        "point": 0.505,
+        "ci": [
+          0.43627000031942814,
+          0.5735415464167125
+        ],
+        "n": 200,
+        "successes": 101
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "rrf",
+      "label": "RRF fusion, no temporal term",
+      "family": "semantic",
+      "params": {},
+      "sweep_of": null,
+      "n_total": 850,
+      "stale_answer_rate": 0.695,
+      "historical_accuracy": 0.55,
+      "corrected_accuracy": 0.015,
+      "unchanged_accuracy": 0.555,
+      "contradiction_detection": 1.0,
+      "r1": 0.3941176470588235,
+      "r5": 0.9952941176470588,
+      "mrr": 0.6425518207282913,
+      "ndcg10": 0.7329737171952954,
+      "tied_positions": 0,
+      "queries_with_ties": 0,
+      "latency_p50_ms": 0.07665000021006563,
+      "latency_p95_ms": 0.09855499986315408,
+      "stale_answer_rate_ci": {
+        "point": 0.695,
+        "ci": [
+          0.6280144790038978,
+          0.7546358437055837
+        ],
+        "n": 200,
+        "successes": 139
+      },
+      "historical_accuracy_ci": {
+        "point": 0.55,
+        "ci": [
+          0.5010009985691113,
+          0.598047771997017
+        ],
+        "n": 400,
+        "successes": 220
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.555,
+        "ci": [
+          0.4857330241118434,
+          0.6221939899857027
+        ],
+        "n": 200,
+        "successes": 111
+      },
+      "corrected_accuracy_ci": {
+        "point": 0.015,
+        "ci": [
+          0.005114237792075609,
+          0.04316572880229082
+        ],
+        "n": 200,
+        "successes": 3
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "valid_time",
+      "label": "Valid-time only",
+      "family": "temporal",
+      "params": {},
+      "sweep_of": null,
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7594509803921569,
+      "ndcg10": 0.822377192638777,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.08849999994708924,
+      "latency_p95_ms": 0.11803500021869687,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "txn_time",
+      "label": "Transaction-time only",
+      "family": "temporal",
+      "params": {},
+      "sweep_of": null,
+      "n_total": 850,
+      "stale_answer_rate": 0.215,
+      "historical_accuracy": 0.2125,
+      "corrected_accuracy": 0.785,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5541176470588235,
+      "r5": 1.0,
+      "mrr": 0.7748039215686275,
+      "ndcg10": 0.8336530691083388,
+      "tied_positions": 212,
+      "queries_with_ties": 190,
+      "latency_p50_ms": 0.08905000004233443,
+      "latency_p95_ms": 0.12105500020425097,
+      "stale_answer_rate_ci": {
+        "point": 0.215,
+        "ci": [
+          0.16371876253438777,
+          0.2770230735056007
+        ],
+        "n": 200,
+        "successes": 43
+      },
+      "historical_accuracy_ci": {
+        "point": 0.2125,
+        "ci": [
+          0.17524350991556903,
+          0.2552260593291942
+        ],
+        "n": 400,
+        "successes": 85
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 0.785,
+        "ci": [
+          0.7229769264943993,
+          0.8362812374656122
+        ],
+        "n": 200,
+        "successes": 157
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "latest_n",
+      "label": "Latest-N",
+      "family": "temporal",
+      "params": {},
+      "sweep_of": null,
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 0.105,
+      "unchanged_accuracy": 0.05,
+      "contradiction_detection": 1.0,
+      "r1": 0.03882352941176471,
+      "r5": 0.3552941176470588,
+      "mrr": 0.20723529675064004,
+      "ndcg10": 0.4312339238365923,
+      "tied_positions": 0,
+      "queries_with_ties": 0,
+      "latency_p50_ms": 0.009549999958835542,
+      "latency_p95_ms": 0.012200000128359534,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.05,
+        "ci": [
+          0.02738264559697644,
+          0.08957814815037385
+        ],
+        "n": 200,
+        "successes": 10
+      },
+      "corrected_accuracy_ci": {
+        "point": 0.105,
+        "ci": [
+          0.06970748792009955,
+          0.1551803199247968
+        ],
+        "n": 200,
+        "successes": 21
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "bitemporal",
+      "label": "Bitemporal, both axes, no graph",
+      "family": "ablation",
+      "params": {},
+      "sweep_of": null,
+      "n_total": 850,
+      "stale_answer_rate": 0.07,
+      "historical_accuracy": 0.065,
+      "corrected_accuracy": 0.875,
+      "unchanged_accuracy": 0.945,
+      "contradiction_detection": 1.0,
+      "r1": 0.4964705882352941,
+      "r5": 0.9894117647058823,
+      "mrr": 0.7119453781512606,
+      "ndcg10": 0.7851469427869483,
+      "tied_positions": 206,
+      "queries_with_ties": 184,
+      "latency_p50_ms": 0.09784999974726816,
+      "latency_p95_ms": 0.13425499996628787,
+      "stale_answer_rate_ci": {
+        "point": 0.07,
+        "ci": [
+          0.042152171823376154,
+          0.11405480886853635
+        ],
+        "n": 200,
+        "successes": 14
+      },
+      "historical_accuracy_ci": {
+        "point": 0.065,
+        "ci": [
+          0.04474048189228995,
+          0.0935352141823952
+        ],
+        "n": 400,
+        "successes": 26
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.945,
+        "ci": [
+          0.9042130012158698,
+          0.9690146583006393
+        ],
+        "n": 200,
+        "successes": 189
+      },
+      "corrected_accuracy_ci": {
+        "point": 0.875,
+        "ci": [
+          0.8219857499600927,
+          0.9138802552504487
+        ],
+        "n": 200,
+        "successes": 175
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "ours",
+      "label": "Ours: three-valued, graph-conditioned",
+      "family": "ours",
+      "params": {},
+      "sweep_of": null,
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.9775,
+      "corrected_accuracy": 0.985,
+      "unchanged_accuracy": 0.945,
+      "contradiction_detection": 1.0,
+      "r1": 0.9352941176470588,
+      "r5": 1.0,
+      "mrr": 0.966764705882353,
+      "ndcg10": 0.975421287047315,
+      "tied_positions": 186,
+      "queries_with_ties": 161,
+      "latency_p50_ms": 0.18780000004881003,
+      "latency_p95_ms": 19.483344999912322,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.9775,
+        "ci": [
+          0.9577973424352902,
+          0.9881184164712338
+        ],
+        "n": 400,
+        "successes": 391
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.945,
+        "ci": [
+          0.9042130012158698,
+          0.9690146583006393
+        ],
+        "n": 200,
+        "successes": 189
+      },
+      "corrected_accuracy_ci": {
+        "point": 0.985,
+        "ci": [
+          0.9568342711977091,
+          0.9948857622079245
+        ],
+        "n": 200,
+        "successes": 197
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.01_7",
+      "label": "Recency decay (lambda=0.01, tau=7d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.01,
+        "tau": 7.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.7,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 0.3,
+      "unchanged_accuracy": 0.985,
+      "contradiction_detection": 1.0,
+      "r1": 0.32235294117647056,
+      "r5": 1.0,
+      "mrr": 0.7451372549019608,
+      "ndcg10": 0.813129286100388,
+      "tied_positions": 713,
+      "queries_with_ties": 523,
+      "latency_p50_ms": 0.09079999995265098,
+      "latency_p95_ms": 0.12367500021355224,
+      "stale_answer_rate_ci": {
+        "point": 0.7,
+        "ci": [
+          0.6332093162565092,
+          0.7592525531891128
+        ],
+        "n": 200,
+        "successes": 140
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.985,
+        "ci": [
+          0.9568342711977091,
+          0.9948857622079245
+        ],
+        "n": 200,
+        "successes": 197
+      },
+      "corrected_accuracy_ci": {
+        "point": 0.3,
+        "ci": [
+          0.24074744681088714,
+          0.3667906837434908
+        ],
+        "n": 200,
+        "successes": 60
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.01_30",
+      "label": "Recency decay (lambda=0.01, tau=30d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.01,
+        "tau": 30.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.09090000003197929,
+      "latency_p95_ms": 0.11996499999895603,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.01_90",
+      "label": "Recency decay (lambda=0.01, tau=90d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.01,
+        "tau": 90.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.09275000002162415,
+      "latency_p95_ms": 0.1295199999503893,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.01_180",
+      "label": "Recency decay (lambda=0.01, tau=180d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.01,
+        "tau": 180.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.09049999994203972,
+      "latency_p95_ms": 0.12109499998587121,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.01_365",
+      "label": "Recency decay (lambda=0.01, tau=365d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.01,
+        "tau": 365.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.09064999994734535,
+      "latency_p95_ms": 0.1197750000756059,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.03_7",
+      "label": "Recency decay (lambda=0.03, tau=7d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.03,
+        "tau": 7.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.68,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 0.32,
+      "unchanged_accuracy": 0.985,
+      "contradiction_detection": 1.0,
+      "r1": 0.32823529411764707,
+      "r5": 1.0,
+      "mrr": 0.7460392156862745,
+      "ndcg10": 0.8137669740395748,
+      "tied_positions": 701,
+      "queries_with_ties": 518,
+      "latency_p50_ms": 0.09090000003197929,
+      "latency_p95_ms": 0.1271650002536262,
+      "stale_answer_rate_ci": {
+        "point": 0.68,
+        "ci": [
+          0.6124810156424961,
+          0.7407346668585638
+        ],
+        "n": 200,
+        "successes": 136
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.985,
+        "ci": [
+          0.9568342711977091,
+          0.9948857622079245
+        ],
+        "n": 200,
+        "successes": 197
+      },
+      "corrected_accuracy_ci": {
+        "point": 0.32,
+        "ci": [
+          0.2592653331414362,
+          0.3875189843575039
+        ],
+        "n": 200,
+        "successes": 64
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.03_30",
+      "label": "Recency decay (lambda=0.03, tau=30d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.03,
+        "tau": 30.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.0905000001694134,
+      "latency_p95_ms": 0.123964999988857,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.03_90",
+      "label": "Recency decay (lambda=0.03, tau=90d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.03,
+        "tau": 90.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.09090000003197929,
+      "latency_p95_ms": 0.12175500028206443,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.03_180",
+      "label": "Recency decay (lambda=0.03, tau=180d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.03,
+        "tau": 180.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.09589999990566866,
+      "latency_p95_ms": 0.16084000014870967,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.03_365",
+      "label": "Recency decay (lambda=0.03, tau=365d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.03,
+        "tau": 365.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.08989999969344353,
+      "latency_p95_ms": 0.11962000005496519,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.05_7",
+      "label": "Recency decay (lambda=0.05, tau=7d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.05,
+        "tau": 7.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.67,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 0.33,
+      "unchanged_accuracy": 0.985,
+      "contradiction_detection": 1.0,
+      "r1": 0.33176470588235296,
+      "r5": 1.0,
+      "mrr": 0.7468235294117647,
+      "ndcg10": 0.8143310981811192,
+      "tied_positions": 694,
+      "queries_with_ties": 513,
+      "latency_p50_ms": 0.0909499999579566,
+      "latency_p95_ms": 0.12382000020352278,
+      "stale_answer_rate_ci": {
+        "point": 0.67,
+        "ci": [
+          0.6021668477213762,
+          0.7314257413074026
+        ],
+        "n": 200,
+        "successes": 134
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.985,
+        "ci": [
+          0.9568342711977091,
+          0.9948857622079245
+        ],
+        "n": 200,
+        "successes": 197
+      },
+      "corrected_accuracy_ci": {
+        "point": 0.33,
+        "ci": [
+          0.26857425869259743,
+          0.3978331522786238
+        ],
+        "n": 200,
+        "successes": 66
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.05_30",
+      "label": "Recency decay (lambda=0.05, tau=30d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.05,
+        "tau": 30.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.0903499999367341,
+      "latency_p95_ms": 0.12211500009016157,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.05_90",
+      "label": "Recency decay (lambda=0.05, tau=90d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.05,
+        "tau": 90.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.09019999993142847,
+      "latency_p95_ms": 0.12563000004774946,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.05_180",
+      "label": "Recency decay (lambda=0.05, tau=180d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.05,
+        "tau": 180.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.08969999998953426,
+      "latency_p95_ms": 0.12256499978775535,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.05_365",
+      "label": "Recency decay (lambda=0.05, tau=365d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.05,
+        "tau": 365.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.09000000000014552,
+      "latency_p95_ms": 0.12116500004140106,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.1_7",
+      "label": "Recency decay (lambda=0.1, tau=7d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.1,
+        "tau": 7.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.66,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 0.34,
+      "unchanged_accuracy": 0.985,
+      "contradiction_detection": 1.0,
+      "r1": 0.33647058823529413,
+      "r5": 1.0,
+      "mrr": 0.7479439775910364,
+      "ndcg10": 0.8151356630559017,
+      "tied_positions": 687,
+      "queries_with_ties": 511,
+      "latency_p50_ms": 0.09090000003197929,
+      "latency_p95_ms": 0.1249750001079519,
+      "stale_answer_rate_ci": {
+        "point": 0.66,
+        "ci": [
+          0.5918849552519528,
+          0.7220845403045448
+        ],
+        "n": 200,
+        "successes": 132
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.985,
+        "ci": [
+          0.9568342711977091,
+          0.9948857622079245
+        ],
+        "n": 200,
+        "successes": 197
+      },
+      "corrected_accuracy_ci": {
+        "point": 0.34,
+        "ci": [
+          0.27791545969545517,
+          0.4081150447480472
+        ],
+        "n": 200,
+        "successes": 68
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.1_30",
+      "label": "Recency decay (lambda=0.1, tau=30d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.1,
+        "tau": 30.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.0980999998319021,
+      "latency_p95_ms": 0.19801999994797367,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.1_90",
+      "label": "Recency decay (lambda=0.1, tau=90d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.1,
+        "tau": 90.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.09060000002136803,
+      "latency_p95_ms": 0.12205499983792834,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.1_180",
+      "label": "Recency decay (lambda=0.1, tau=180d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.1,
+        "tau": 180.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.09049999994203972,
+      "latency_p95_ms": 0.12085500025023066,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.1_365",
+      "label": "Recency decay (lambda=0.1, tau=365d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.1,
+        "tau": 365.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.09210000007442432,
+      "latency_p95_ms": 0.12450999984139342,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.15_7",
+      "label": "Recency decay (lambda=0.15, tau=7d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.15,
+        "tau": 7.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.66,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 0.34,
+      "unchanged_accuracy": 0.985,
+      "contradiction_detection": 1.0,
+      "r1": 0.33647058823529413,
+      "r5": 1.0,
+      "mrr": 0.7471596638655462,
+      "ndcg10": 0.8145448816733389,
+      "tied_positions": 682,
+      "queries_with_ties": 509,
+      "latency_p50_ms": 0.08965000006355694,
+      "latency_p95_ms": 0.1194749998148836,
+      "stale_answer_rate_ci": {
+        "point": 0.66,
+        "ci": [
+          0.5918849552519528,
+          0.7220845403045448
+        ],
+        "n": 200,
+        "successes": 132
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.985,
+        "ci": [
+          0.9568342711977091,
+          0.9948857622079245
+        ],
+        "n": 200,
+        "successes": 197
+      },
+      "corrected_accuracy_ci": {
+        "point": 0.34,
+        "ci": [
+          0.27791545969545517,
+          0.4081150447480472
+        ],
+        "n": 200,
+        "successes": 68
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.15_30",
+      "label": "Recency decay (lambda=0.15, tau=30d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.15,
+        "tau": 30.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.0897999998414889,
+      "latency_p95_ms": 0.12300000005325273,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.15_90",
+      "label": "Recency decay (lambda=0.15, tau=90d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.15,
+        "tau": 90.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.0899500000741682,
+      "latency_p95_ms": 0.1211999999895852,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.15_180",
+      "label": "Recency decay (lambda=0.15, tau=180d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.15,
+        "tau": 180.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.08990000014819088,
+      "latency_p95_ms": 0.11925499989047239,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.15_365",
+      "label": "Recency decay (lambda=0.15, tau=365d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.15,
+        "tau": 365.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.09069999987332267,
+      "latency_p95_ms": 0.12060999995355813,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.3_7",
+      "label": "Recency decay (lambda=0.3, tau=7d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.3,
+        "tau": 7.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.645,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 0.355,
+      "unchanged_accuracy": 0.985,
+      "contradiction_detection": 1.0,
+      "r1": 0.34,
+      "r5": 1.0,
+      "mrr": 0.7463753501400561,
+      "ndcg10": 0.813927443049758,
+      "tied_positions": 669,
+      "queries_with_ties": 500,
+      "latency_p50_ms": 0.08960000013757963,
+      "latency_p95_ms": 0.11875499997131556,
+      "stale_answer_rate_ci": {
+        "point": 0.645,
+        "ci": [
+          0.5765211307384819,
+          0.7080137246095942
+        ],
+        "n": 200,
+        "successes": 129
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.985,
+        "ci": [
+          0.9568342711977091,
+          0.9948857622079245
+        ],
+        "n": 200,
+        "successes": 197
+      },
+      "corrected_accuracy_ci": {
+        "point": 0.355,
+        "ci": [
+          0.29198627539040584,
+          0.4234788692615181
+        ],
+        "n": 200,
+        "successes": 71
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.3_30",
+      "label": "Recency decay (lambda=0.3, tau=30d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.3,
+        "tau": 30.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7603921568627452,
+      "ndcg10": 0.8231264470000138,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.089399999978923,
+      "latency_p95_ms": 0.11970000014116522,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.3_90",
+      "label": "Recency decay (lambda=0.3, tau=90d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.3,
+        "tau": 90.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7594509803921569,
+      "ndcg10": 0.822377192638777,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.08954999975685496,
+      "latency_p95_ms": 0.12101999980131949,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.3_180",
+      "label": "Recency decay (lambda=0.3, tau=180d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.3,
+        "tau": 180.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7586666666666667,
+      "ndcg10": 0.821751973645168,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.09039999986271141,
+      "latency_p95_ms": 0.12275499971110548,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.3_365",
+      "label": "Recency decay (lambda=0.3, tau=365d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.3,
+        "tau": 365.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7585686274509803,
+      "ndcg10": 0.8216704166546662,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.09160000013253011,
+      "latency_p95_ms": 0.12445000002117008,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.5_7",
+      "label": "Recency decay (lambda=0.5, tau=7d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.5,
+        "tau": 7.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.645,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 0.355,
+      "unchanged_accuracy": 0.985,
+      "contradiction_detection": 1.0,
+      "r1": 0.34,
+      "r5": 1.0,
+      "mrr": 0.7475518207282914,
+      "ndcg10": 0.8148136151236021,
+      "tied_positions": 675,
+      "queries_with_ties": 503,
+      "latency_p50_ms": 0.08984999976746622,
+      "latency_p95_ms": 0.12270999977772588,
+      "stale_answer_rate_ci": {
+        "point": 0.645,
+        "ci": [
+          0.5765211307384819,
+          0.7080137246095942
+        ],
+        "n": 200,
+        "successes": 129
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.985,
+        "ci": [
+          0.9568342711977091,
+          0.9948857622079245
+        ],
+        "n": 200,
+        "successes": 197
+      },
+      "corrected_accuracy_ci": {
+        "point": 0.355,
+        "ci": [
+          0.29198627539040584,
+          0.4234788692615181
+        ],
+        "n": 200,
+        "successes": 71
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.5_30",
+      "label": "Recency decay (lambda=0.5, tau=30d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.5,
+        "tau": 30.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 1.0,
+      "unchanged_accuracy": 0.99,
+      "contradiction_detection": 1.0,
+      "r1": 0.5211764705882352,
+      "r5": 1.0,
+      "mrr": 0.7601960784313725,
+      "ndcg10": 0.8229724119958122,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.09025000008477946,
+      "latency_p95_ms": 0.12100999981612402,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.99,
+        "ci": [
+          0.9642782382745838,
+          0.9972533418671902
+        ],
+        "n": 200,
+        "successes": 198
+      },
+      "corrected_accuracy_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9811546736140551,
+          0.9999999999999998
+        ],
+        "n": 200,
+        "successes": 200
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.5_90",
+      "label": "Recency decay (lambda=0.5, tau=90d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.5,
+        "tau": 90.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 0.995,
+      "unchanged_accuracy": 0.985,
+      "contradiction_detection": 1.0,
+      "r1": 0.5188235294117647,
+      "r5": 1.0,
+      "mrr": 0.7567450980392157,
+      "ndcg10": 0.8202883537083011,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.08990000014819088,
+      "latency_p95_ms": 0.12065500009157404,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.985,
+        "ci": [
+          0.9568342711977091,
+          0.9948857622079245
+        ],
+        "n": 200,
+        "successes": 197
+      },
+      "corrected_accuracy_ci": {
+        "point": 0.995,
+        "ci": [
+          0.9722262955932254,
+          0.9991168312846892
+        ],
+        "n": 200,
+        "successes": 199
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.5_180",
+      "label": "Recency decay (lambda=0.5, tau=180d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.5,
+        "tau": 180.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 0.98,
+      "unchanged_accuracy": 0.975,
+      "contradiction_detection": 1.0,
+      "r1": 0.5129411764705882,
+      "r5": 1.0,
+      "mrr": 0.7511960784313725,
+      "ndcg10": 0.816036102919765,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.09000000000014552,
+      "latency_p95_ms": 0.11905499998192681,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.975,
+        "ci": [
+          0.9428216595830936,
+          0.9892752803502589
+        ],
+        "n": 200,
+        "successes": 195
+      },
+      "corrected_accuracy_ci": {
+        "point": 0.98,
+        "ci": [
+          0.9497129130842302,
+          0.9921955735852628
+        ],
+        "n": 200,
+        "successes": 196
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    },
+    {
+      "key": "decay_0.5_365",
+      "label": "Recency decay (lambda=0.5, tau=365d)",
+      "family": "temporal",
+      "params": {
+        "lambda": 0.5,
+        "tau": 365.0
+      },
+      "sweep_of": "decay",
+      "n_total": 850,
+      "stale_answer_rate": 0.0,
+      "historical_accuracy": 0.0,
+      "corrected_accuracy": 0.985,
+      "unchanged_accuracy": 0.985,
+      "contradiction_detection": 1.0,
+      "r1": 0.5152941176470588,
+      "r5": 1.0,
+      "mrr": 0.7514901960784314,
+      "ndcg10": 0.816206806492288,
+      "tied_positions": 210,
+      "queries_with_ties": 188,
+      "latency_p50_ms": 0.09030000001075678,
+      "latency_p95_ms": 0.12165499997536244,
+      "stale_answer_rate_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.018845326385944775
+        ],
+        "n": 200,
+        "successes": 0
+      },
+      "historical_accuracy_ci": {
+        "point": 0.0,
+        "ci": [
+          0.0,
+          0.009512294338718552
+        ],
+        "n": 400,
+        "successes": 0
+      },
+      "unchanged_accuracy_ci": {
+        "point": 0.985,
+        "ci": [
+          0.9568342711977091,
+          0.9948857622079245
+        ],
+        "n": 200,
+        "successes": 197
+      },
+      "corrected_accuracy_ci": {
+        "point": 0.985,
+        "ci": [
+          0.9568342711977091,
+          0.9948857622079245
+        ],
+        "n": 200,
+        "successes": 197
+      },
+      "contradiction_detection_ci": {
+        "point": 1.0,
+        "ci": [
+          0.9286524008355441,
+          1.0
+        ],
+        "n": 50,
+        "successes": 50
+      }
+    }
+  ],
+  "headline_figure": {
+    "x": "stale_answer_rate",
+    "y": "historical_accuracy",
+    "points": [
+      {
+        "key": "random",
+        "label": "Random floor",
+        "family": "floor",
+        "sweep_of": null,
+        "params": {},
+        "stale_answer_rate": 0.17,
+        "historical_accuracy": 0.0925,
+        "unchanged_accuracy": 0.075
+      },
+      {
+        "key": "lexical",
+        "label": "Token overlap",
+        "family": "floor",
+        "sweep_of": null,
+        "params": {},
+        "stale_answer_rate": 1.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.975
+      },
+      {
+        "key": "dense",
+        "label": "Dense-only (no temporal term)",
+        "family": "semantic",
+        "sweep_of": null,
+        "params": {},
+        "stale_answer_rate": 0.495,
+        "historical_accuracy": 0.4575,
+        "unchanged_accuracy": 0.975
+      },
+      {
+        "key": "rrf",
+        "label": "RRF fusion, no temporal term",
+        "family": "semantic",
+        "sweep_of": null,
+        "params": {},
+        "stale_answer_rate": 0.695,
+        "historical_accuracy": 0.55,
+        "unchanged_accuracy": 0.555
+      },
+      {
+        "key": "valid_time",
+        "label": "Valid-time only",
+        "family": "temporal",
+        "sweep_of": null,
+        "params": {},
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "txn_time",
+        "label": "Transaction-time only",
+        "family": "temporal",
+        "sweep_of": null,
+        "params": {},
+        "stale_answer_rate": 0.215,
+        "historical_accuracy": 0.2125,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "latest_n",
+        "label": "Latest-N",
+        "family": "temporal",
+        "sweep_of": null,
+        "params": {},
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.05
+      },
+      {
+        "key": "bitemporal",
+        "label": "Bitemporal, both axes, no graph",
+        "family": "ablation",
+        "sweep_of": null,
+        "params": {},
+        "stale_answer_rate": 0.07,
+        "historical_accuracy": 0.065,
+        "unchanged_accuracy": 0.945
+      },
+      {
+        "key": "ours",
+        "label": "Ours: three-valued, graph-conditioned",
+        "family": "ours",
+        "sweep_of": null,
+        "params": {},
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.9775,
+        "unchanged_accuracy": 0.945
+      },
+      {
+        "key": "decay_0.01_7",
+        "label": "Recency decay (lambda=0.01, tau=7d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.01,
+          "tau": 7.0
+        },
+        "stale_answer_rate": 0.7,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.985
+      },
+      {
+        "key": "decay_0.01_30",
+        "label": "Recency decay (lambda=0.01, tau=30d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.01,
+          "tau": 30.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.01_90",
+        "label": "Recency decay (lambda=0.01, tau=90d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.01,
+          "tau": 90.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.01_180",
+        "label": "Recency decay (lambda=0.01, tau=180d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.01,
+          "tau": 180.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.01_365",
+        "label": "Recency decay (lambda=0.01, tau=365d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.01,
+          "tau": 365.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.03_7",
+        "label": "Recency decay (lambda=0.03, tau=7d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.03,
+          "tau": 7.0
+        },
+        "stale_answer_rate": 0.68,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.985
+      },
+      {
+        "key": "decay_0.03_30",
+        "label": "Recency decay (lambda=0.03, tau=30d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.03,
+          "tau": 30.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.03_90",
+        "label": "Recency decay (lambda=0.03, tau=90d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.03,
+          "tau": 90.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.03_180",
+        "label": "Recency decay (lambda=0.03, tau=180d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.03,
+          "tau": 180.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.03_365",
+        "label": "Recency decay (lambda=0.03, tau=365d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.03,
+          "tau": 365.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.05_7",
+        "label": "Recency decay (lambda=0.05, tau=7d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.05,
+          "tau": 7.0
+        },
+        "stale_answer_rate": 0.67,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.985
+      },
+      {
+        "key": "decay_0.05_30",
+        "label": "Recency decay (lambda=0.05, tau=30d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.05,
+          "tau": 30.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.05_90",
+        "label": "Recency decay (lambda=0.05, tau=90d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.05,
+          "tau": 90.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.05_180",
+        "label": "Recency decay (lambda=0.05, tau=180d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.05,
+          "tau": 180.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.05_365",
+        "label": "Recency decay (lambda=0.05, tau=365d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.05,
+          "tau": 365.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.1_7",
+        "label": "Recency decay (lambda=0.1, tau=7d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.1,
+          "tau": 7.0
+        },
+        "stale_answer_rate": 0.66,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.985
+      },
+      {
+        "key": "decay_0.1_30",
+        "label": "Recency decay (lambda=0.1, tau=30d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.1,
+          "tau": 30.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.1_90",
+        "label": "Recency decay (lambda=0.1, tau=90d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.1,
+          "tau": 90.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.1_180",
+        "label": "Recency decay (lambda=0.1, tau=180d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.1,
+          "tau": 180.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.1_365",
+        "label": "Recency decay (lambda=0.1, tau=365d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.1,
+          "tau": 365.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.15_7",
+        "label": "Recency decay (lambda=0.15, tau=7d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.15,
+          "tau": 7.0
+        },
+        "stale_answer_rate": 0.66,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.985
+      },
+      {
+        "key": "decay_0.15_30",
+        "label": "Recency decay (lambda=0.15, tau=30d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.15,
+          "tau": 30.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.15_90",
+        "label": "Recency decay (lambda=0.15, tau=90d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.15,
+          "tau": 90.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.15_180",
+        "label": "Recency decay (lambda=0.15, tau=180d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.15,
+          "tau": 180.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.15_365",
+        "label": "Recency decay (lambda=0.15, tau=365d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.15,
+          "tau": 365.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.3_7",
+        "label": "Recency decay (lambda=0.3, tau=7d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.3,
+          "tau": 7.0
+        },
+        "stale_answer_rate": 0.645,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.985
+      },
+      {
+        "key": "decay_0.3_30",
+        "label": "Recency decay (lambda=0.3, tau=30d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.3,
+          "tau": 30.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.3_90",
+        "label": "Recency decay (lambda=0.3, tau=90d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.3,
+          "tau": 90.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.3_180",
+        "label": "Recency decay (lambda=0.3, tau=180d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.3,
+          "tau": 180.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.3_365",
+        "label": "Recency decay (lambda=0.3, tau=365d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.3,
+          "tau": 365.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.5_7",
+        "label": "Recency decay (lambda=0.5, tau=7d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.5,
+          "tau": 7.0
+        },
+        "stale_answer_rate": 0.645,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.985
+      },
+      {
+        "key": "decay_0.5_30",
+        "label": "Recency decay (lambda=0.5, tau=30d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.5,
+          "tau": 30.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.5_90",
+        "label": "Recency decay (lambda=0.5, tau=90d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.5,
+          "tau": 90.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.985
+      },
+      {
+        "key": "decay_0.5_180",
+        "label": "Recency decay (lambda=0.5, tau=180d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.5,
+          "tau": 180.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.975
+      },
+      {
+        "key": "decay_0.5_365",
+        "label": "Recency decay (lambda=0.5, tau=365d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.5,
+          "tau": 365.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.985
+      }
+    ],
+    "decay_curve": [
+      {
+        "key": "decay_0.01_7",
+        "label": "Recency decay (lambda=0.01, tau=7d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.01,
+          "tau": 7.0
+        },
+        "stale_answer_rate": 0.7,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.985
+      },
+      {
+        "key": "decay_0.03_7",
+        "label": "Recency decay (lambda=0.03, tau=7d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.03,
+          "tau": 7.0
+        },
+        "stale_answer_rate": 0.68,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.985
+      },
+      {
+        "key": "decay_0.05_7",
+        "label": "Recency decay (lambda=0.05, tau=7d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.05,
+          "tau": 7.0
+        },
+        "stale_answer_rate": 0.67,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.985
+      },
+      {
+        "key": "decay_0.1_7",
+        "label": "Recency decay (lambda=0.1, tau=7d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.1,
+          "tau": 7.0
+        },
+        "stale_answer_rate": 0.66,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.985
+      },
+      {
+        "key": "decay_0.15_7",
+        "label": "Recency decay (lambda=0.15, tau=7d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.15,
+          "tau": 7.0
+        },
+        "stale_answer_rate": 0.66,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.985
+      },
+      {
+        "key": "decay_0.3_7",
+        "label": "Recency decay (lambda=0.3, tau=7d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.3,
+          "tau": 7.0
+        },
+        "stale_answer_rate": 0.645,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.985
+      },
+      {
+        "key": "decay_0.5_7",
+        "label": "Recency decay (lambda=0.5, tau=7d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.5,
+          "tau": 7.0
+        },
+        "stale_answer_rate": 0.645,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.985
+      },
+      {
+        "key": "decay_0.01_30",
+        "label": "Recency decay (lambda=0.01, tau=30d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.01,
+          "tau": 30.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.03_30",
+        "label": "Recency decay (lambda=0.03, tau=30d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.03,
+          "tau": 30.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.05_30",
+        "label": "Recency decay (lambda=0.05, tau=30d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.05,
+          "tau": 30.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.1_30",
+        "label": "Recency decay (lambda=0.1, tau=30d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.1,
+          "tau": 30.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.15_30",
+        "label": "Recency decay (lambda=0.15, tau=30d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.15,
+          "tau": 30.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.3_30",
+        "label": "Recency decay (lambda=0.3, tau=30d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.3,
+          "tau": 30.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.5_30",
+        "label": "Recency decay (lambda=0.5, tau=30d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.5,
+          "tau": 30.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.01_90",
+        "label": "Recency decay (lambda=0.01, tau=90d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.01,
+          "tau": 90.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.03_90",
+        "label": "Recency decay (lambda=0.03, tau=90d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.03,
+          "tau": 90.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.05_90",
+        "label": "Recency decay (lambda=0.05, tau=90d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.05,
+          "tau": 90.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.1_90",
+        "label": "Recency decay (lambda=0.1, tau=90d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.1,
+          "tau": 90.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.15_90",
+        "label": "Recency decay (lambda=0.15, tau=90d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.15,
+          "tau": 90.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.3_90",
+        "label": "Recency decay (lambda=0.3, tau=90d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.3,
+          "tau": 90.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.5_90",
+        "label": "Recency decay (lambda=0.5, tau=90d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.5,
+          "tau": 90.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.985
+      },
+      {
+        "key": "decay_0.01_180",
+        "label": "Recency decay (lambda=0.01, tau=180d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.01,
+          "tau": 180.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.03_180",
+        "label": "Recency decay (lambda=0.03, tau=180d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.03,
+          "tau": 180.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.05_180",
+        "label": "Recency decay (lambda=0.05, tau=180d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.05,
+          "tau": 180.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.1_180",
+        "label": "Recency decay (lambda=0.1, tau=180d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.1,
+          "tau": 180.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.15_180",
+        "label": "Recency decay (lambda=0.15, tau=180d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.15,
+          "tau": 180.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.3_180",
+        "label": "Recency decay (lambda=0.3, tau=180d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.3,
+          "tau": 180.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.5_180",
+        "label": "Recency decay (lambda=0.5, tau=180d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.5,
+          "tau": 180.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.975
+      },
+      {
+        "key": "decay_0.01_365",
+        "label": "Recency decay (lambda=0.01, tau=365d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.01,
+          "tau": 365.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.03_365",
+        "label": "Recency decay (lambda=0.03, tau=365d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.03,
+          "tau": 365.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.05_365",
+        "label": "Recency decay (lambda=0.05, tau=365d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.05,
+          "tau": 365.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.1_365",
+        "label": "Recency decay (lambda=0.1, tau=365d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.1,
+          "tau": 365.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.15_365",
+        "label": "Recency decay (lambda=0.15, tau=365d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.15,
+          "tau": 365.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.3_365",
+        "label": "Recency decay (lambda=0.3, tau=365d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.3,
+          "tau": 365.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.99
+      },
+      {
+        "key": "decay_0.5_365",
+        "label": "Recency decay (lambda=0.5, tau=365d)",
+        "family": "temporal",
+        "sweep_of": "decay",
+        "params": {
+          "lambda": 0.5,
+          "tau": 365.0
+        },
+        "stale_answer_rate": 0.0,
+        "historical_accuracy": 0.0,
+        "unchanged_accuracy": 0.985
+      }
+    ]
+  },
+  "significance": [
+    {
+      "baseline": "random",
+      "baseline_label": "Random floor",
+      "safe_answer_mcnemar": {
+        "b": 188,
+        "c": 0,
+        "n_discordant": 188,
+        "p_value": 5.0978941156238473e-57,
+        "significant": true
+      },
+      "staleness_only_mcnemar": {
+        "b": 0,
+        "c": 34,
+        "n_discordant": 34,
+        "p_value": 1.1641532182693481e-10,
+        "significant": true
+      },
+      "historical_bootstrap": {
+        "point": 0.885,
+        "low": 0.8525,
+        "high": 0.915,
+        "p_value": 0.0,
+        "significant": true,
+        "resamples": 10000,
+        "n": 400
+      },
+      "n_corrected_queries": 200,
+      "n_historical_queries": 400
+    },
+    {
+      "baseline": "lexical",
+      "baseline_label": "Token overlap",
+      "safe_answer_mcnemar": {
+        "b": 197,
+        "c": 0,
+        "n_discordant": 197,
+        "p_value": 9.956824444577827e-60,
+        "significant": true
+      },
+      "staleness_only_mcnemar": {
+        "b": 0,
+        "c": 200,
+        "n_discordant": 200,
+        "p_value": 1.2446030555722283e-60,
+        "significant": true
+      },
+      "historical_bootstrap": {
+        "point": 0.9775,
+        "low": 0.9625,
+        "high": 0.99,
+        "p_value": 0.0,
+        "significant": true,
+        "resamples": 10000,
+        "n": 400
+      },
+      "n_corrected_queries": 200,
+      "n_historical_queries": 400
+    },
+    {
+      "baseline": "dense",
+      "baseline_label": "Dense-only (no temporal term)",
+      "safe_answer_mcnemar": {
+        "b": 98,
+        "c": 2,
+        "n_discordant": 100,
+        "p_value": 7.969072864542661e-27,
+        "significant": true
+      },
+      "staleness_only_mcnemar": {
+        "b": 0,
+        "c": 99,
+        "n_discordant": 99,
+        "p_value": 3.1554436208840472e-30,
+        "significant": true
+      },
+      "historical_bootstrap": {
+        "point": 0.52,
+        "low": 0.47,
+        "high": 0.57,
+        "p_value": 0.0,
+        "significant": true,
+        "resamples": 10000,
+        "n": 400
+      },
+      "n_corrected_queries": 200,
+      "n_historical_queries": 400
+    },
+    {
+      "baseline": "rrf",
+      "baseline_label": "RRF fusion, no temporal term",
+      "safe_answer_mcnemar": {
+        "b": 194,
+        "c": 0,
+        "n_discordant": 194,
+        "p_value": 7.965459555662261e-59,
+        "significant": true
+      },
+      "staleness_only_mcnemar": {
+        "b": 0,
+        "c": 139,
+        "n_discordant": 139,
+        "p_value": 2.8698592549372254e-42,
+        "significant": true
+      },
+      "historical_bootstrap": {
+        "point": 0.4275,
+        "low": 0.3775,
+        "high": 0.4775,
+        "p_value": 0.0,
+        "significant": true,
+        "resamples": 10000,
+        "n": 400
+      },
+      "n_corrected_queries": 200,
+      "n_historical_queries": 400
+    },
+    {
+      "baseline": "valid_time",
+      "baseline_label": "Valid-time only",
+      "safe_answer_mcnemar": {
+        "b": 0,
+        "c": 3,
+        "n_discordant": 3,
+        "p_value": 0.25,
+        "significant": false
+      },
+      "staleness_only_mcnemar": {
+        "b": 0,
+        "c": 0,
+        "p_value": 1.0,
+        "significant": false,
+        "note": "no discordant pairs"
+      },
+      "historical_bootstrap": {
+        "point": 0.9775,
+        "low": 0.9625,
+        "high": 0.99,
+        "p_value": 0.0,
+        "significant": true,
+        "resamples": 10000,
+        "n": 400
+      },
+      "n_corrected_queries": 200,
+      "n_historical_queries": 400
+    },
+    {
+      "baseline": "txn_time",
+      "baseline_label": "Transaction-time only",
+      "safe_answer_mcnemar": {
+        "b": 43,
+        "c": 3,
+        "n_discordant": 46,
+        "p_value": 4.6219383875722997e-10,
+        "significant": true
+      },
+      "staleness_only_mcnemar": {
+        "b": 0,
+        "c": 43,
+        "n_discordant": 43,
+        "p_value": 2.2737367544323206e-13,
+        "significant": true
+      },
+      "historical_bootstrap": {
+        "point": 0.765,
+        "low": 0.7225,
+        "high": 0.8075,
+        "p_value": 0.0,
+        "significant": true,
+        "resamples": 10000,
+        "n": 400
+      },
+      "n_corrected_queries": 200,
+      "n_historical_queries": 400
+    },
+    {
+      "baseline": "latest_n",
+      "baseline_label": "Latest-N",
+      "safe_answer_mcnemar": {
+        "b": 177,
+        "c": 1,
+        "n_discordant": 178,
+        "p_value": 9.344235998173887e-52,
+        "significant": true
+      },
+      "staleness_only_mcnemar": {
+        "b": 0,
+        "c": 0,
+        "p_value": 1.0,
+        "significant": false,
+        "note": "no discordant pairs"
+      },
+      "historical_bootstrap": {
+        "point": 0.9775,
+        "low": 0.9625,
+        "high": 0.99,
+        "p_value": 0.0,
+        "significant": true,
+        "resamples": 10000,
+        "n": 400
+      },
+      "n_corrected_queries": 200,
+      "n_historical_queries": 400
+    },
+    {
+      "baseline": "bitemporal",
+      "baseline_label": "Bitemporal, both axes, no graph",
+      "safe_answer_mcnemar": {
+        "b": 25,
+        "c": 3,
+        "n_discordant": 28,
+        "p_value": 2.744048833847046e-05,
+        "significant": true
+      },
+      "staleness_only_mcnemar": {
+        "b": 0,
+        "c": 14,
+        "n_discordant": 14,
+        "p_value": 0.0001220703125,
+        "significant": true
+      },
+      "historical_bootstrap": {
+        "point": 0.9125,
+        "low": 0.885,
+        "high": 0.94,
+        "p_value": 0.0,
+        "significant": true,
+        "resamples": 10000,
+        "n": 400
+      },
+      "n_corrected_queries": 200,
+      "n_historical_queries": 400
+    }
+  ],
+  "dense_encoder_available": true,
+  "sweeps_included": true,
+  "embedding_cache": {
+    "cache_entries": 3672,
+    "hits": 24316,
+    "misses": 3678,
+    "hit_rate": 0.8686,
+    "forward_batches": 1004,
+    "peak_batch": 18
+  }
+}

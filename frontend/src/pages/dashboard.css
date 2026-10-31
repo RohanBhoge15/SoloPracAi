@@ -1,0 +1,264 @@
+/* Doctor dashboard: KPI tiles, search, patient list. */
+
+.dash-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.dash-title {
+  font-size: clamp(24px, 3.2vw, 32px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.dash-sub {
+  color: var(--text-2);
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.dash-error {
+  background: var(--danger-dim);
+  border: 1px solid rgba(255, 93, 93, 0.3);
+  color: #ffb4b4;
+  padding: 12px 16px;
+  border-radius: var(--r);
+  font-size: 13.5px;
+  margin-bottom: 20px;
+}
+
+/* ── KPI tiles ──────────────────────────────────────────────── */
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.kpi {
+  padding: 20px 22px;
+  /* The tile carries a validity-coloured wash rather than a border, so
+     the numbers stay readable and the colour reads as state. */
+  overflow: hidden;
+}
+.kpi::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.kpi.tone-current::before {
+  background: radial-gradient(ellipse 120% 80% at 100% 0%, var(--current-dim), transparent 65%);
+}
+.kpi.tone-accent::before {
+  background: radial-gradient(ellipse 120% 80% at 100% 0%, var(--accent-dim), transparent 65%);
+}
+.kpi > * { position: relative; }
+
+.kpi-skeleton { height: 108px; opacity: 0.4; }
+
+.kpi-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.kpi-value {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin: 8px 0 5px;
+  font-variant-numeric: tabular-nums;
+}
+.tone-current .kpi-value { color: var(--current); }
+.tone-accent .kpi-value { color: var(--accent); }
+
+.kpi-sub {
+  font-size: 12.5px;
+  color: var(--text-3);
+  line-height: 1.4;
+}
+
+/* ── review warning ─────────────────────────────────────────── */
+
+.review-warn {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 18px;
+  margin-bottom: 26px;
+  border-radius: var(--r);
+  background: var(--superseded-dim);
+  border: 1px solid rgba(245, 165, 36, 0.3);
+  color: var(--superseded);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.review-warn strong { font-weight: 800; }
+.review-warn:hover { background: rgba(245, 165, 36, 0.18); }
+
+/* ── section ────────────────────────────────────────────────── */
+
+.dash-section { margin-top: 8px; }
+
+.dash-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.dash-h2 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.dash-count {
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+/* ── search ─────────────────────────────────────────────────── */
+
+.dash-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  margin-bottom: 14px;
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-3);
+  transition: border-color var(--fast), box-shadow var(--fast);
+}
+.dash-search:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+.dash-search input {
+  flex: 1;
+  padding: 12px 0;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 14px;
+}
+.dash-search input:focus { outline: none; }
+.dash-search input::placeholder { color: var(--text-3); }
+
+.dash-clear {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: var(--text-3);
+  font-size: 13px;
+  line-height: 1;
+  background: var(--surface-3);
+}
+.dash-clear:hover { color: var(--text); }
+
+/* ── patient list ───────────────────────────────────────────── */
+
+.plist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pcard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+}
+
+.pavatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* A patient's own picture. `object-fit: cover` so a portrait photo that
+   was cropped square server-side still fills the tile rather than
+   letterboxing inside it. */
+.pavatar--img {
+  object-fit: cover;
+  display: block;
+  background: var(--surface-3);
+}
+
+.pbody { min-width: 0; flex: 1; }
+
+.pname {
+  display: block;
+  font-size: 14.5px;
+  font-weight: 650;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pmeta {
+  display: block;
+  font-size: 12.5px;
+  color: var(--text-3);
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ptail {
+  text-align: right;
+  flex-shrink: 0;
+}
+.pcount {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+.pwhen {
+  display: block;
+  font-size: 11.5px;
+  color: var(--text-3);
+  margin-top: 2px;
+}
+
+.dash-empty {
+  padding: 34px 20px;
+  text-align: center;
+  color: var(--text-3);
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .ptail { display: none; }
+  .kpi-value { font-size: 28px; }
+}

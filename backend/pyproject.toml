@@ -1,0 +1,104 @@
+[project]
+name = "solum-backend"
+version = "0.1.0"
+description = "SoloPrac — validity-aware clinical record assistant"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "sqlalchemy[asyncio]>=2.0.36",
+    "asyncpg>=0.30",
+    "alembic>=1.14",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "httpx>=0.28",
+    "redis>=5.2",
+    # Held to the server major.minor on purpose. The client checks
+    # compatibility on every call and refuses anything newer than the
+    # server, and docker-compose pins qdrant/qdrant to v1.12.4. Letting
+    # this float resolved 1.19.1 against a 1.12.4 server, which logged a
+    # mismatch warning on every request.
+    "qdrant-client>=1.12,<1.13",
+    "celery[redis]>=5.4",
+    "python-multipart>=0.0.17",
+    "numpy>=2.1",
+    "rapidocr-onnxruntime>=1.4",
+    "pillow>=11.0",
+    "python-dateutil>=2.9",
+    "boto3>=1.35",
+    "weasyprint>=63",
+]
+
+[project.optional-dependencies]
+# The embedding stack. Split out because it is large and optional in a way
+# that matters: without it the API still runs and retrieval falls back to
+# lexical similarity, which is a degraded product rather than a broken one.
+# Only install this where the model weights are actually mounted.
+models = [
+    # CPU-only wheels. The default Linux index resolves `torch` to a CUDA
+    # build and pulls ~2.5 GB of nvidia-* libraries, which is unusable here
+    # and bloats the image past 3 GB. Use the CPU index (see Dockerfile).
+    "torch>=2.4",
+    "transformers>=4.44",
+    # BiomedCLIP. Vision is opt-in at runtime; this only makes it possible.
+    "open_clip_torch>=2.24",
+    # BGE-M3, only if ENABLE_MULTILINGUAL is on for Hindi or code-switched
+    # text. Costs ~2 GB of resident memory.
+    "sentence-transformers>=3.0",
+    # MedGemma is deliberately NOT listed here. llama-cpp-python has no
+    # wheel on PyPI, so declaring it would make `pip install .` attempt a
+    # source build of llama.cpp and fail the whole image. It is installed
+    # in the Dockerfile from the maintainer's prebuilt CPU wheel index, and
+    # the app treats it as optional.
+]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "pytest-cov>=6.0",
+    "ruff>=0.8",
+    "mypy>=1.13",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+asyncio_mode = "auto"
+addopts = "-q --strict-markers --cov=app --cov-report=term-missing"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.coverage.run]
+omit = [
+    "*/migrations/*",
+    "*/__main__.py",
+]
+# The research core and the two safety modules are held to a high bar.
+[tool.coverage.report]
+fail_under = 60
+skip_empty = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "ASYNC"]
+ignore = ["B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+"app/db/*" = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true

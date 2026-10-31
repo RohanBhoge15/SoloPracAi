@@ -1,0 +1,140 @@
+# ============================================================
+# Secrets and local configuration
+# ============================================================
+# Never commit the filled environment file. Only .env.example is public.
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+secrets/
+.secrets/
+credentials*
+patient_id.txt
+
+# ============================================================
+# Curated capstone deliverables - keep this folder exactly as supplied
+# ============================================================
+# Nothing below should exclude CapstoneSubmission/**; its PDFs and PPTX
+# are deliberate submission assets, not generated build output.
+!CapstoneSubmission/
+!CapstoneSubmission/**
+
+# ============================================================
+# Operating system and editors
+# ============================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100/
+.Trashes/
+__MACOSX/
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.idea/
+.vscode/
+.vs/
+*.swp
+*.swo
+*~
+~$*
+*.bak
+*.orig
+*.tmp
+
+# ============================================================
+# Python
+# ============================================================
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+.python-version
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.pyright/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+.pdm-python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+*.egg-info/
+pip-wheel-metadata/
+*.whl
+
+# ============================================================
+# Node / frontend
+# ============================================================
+node_modules/
+.vite/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.eslintcache
+
+# ============================================================
+# Runtime state, logs, and local data
+# ============================================================
+*.log
+logs/
+backend/_pdf_out/
+uploads/
+storage/
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+.cache/
+*.pid
+*.lock
+
+# ============================================================
+# Generated evaluation data
+# ============================================================
+# Keep the small report.md/report.json evidence files linked from the
+# README. The per-run dataset snapshots are reproducible outputs.
+eval/results/**/dataset.json
+eval/results/**/generation_k*.json
+eval/results/**/INVALID_*
+
+# ============================================================
+# Generated paper/build artifacts
+# ============================================================
+# The curated CapstoneSubmission bundle (PDF/PPTX) is intentionally
+# tracked exactly as supplied, so PDFs are NOT ignored globally.
+solum_ieee_5pg_v2_plaintext.txt
+*_backup_before_*.tex
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+*.xdv

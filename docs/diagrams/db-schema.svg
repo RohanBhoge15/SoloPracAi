@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1432" height="543" viewBox="0 -35 1432 543" font-family="'DejaVu Sans Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace" font-size="14px">
+  <defs>
+    <marker id="r7fe44d66-arrow-5c5c7c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5c5c7c"/>
+    </marker>
+    <mask id="r7fe44d66-cut-1" maskUnits="userSpaceOnUse" x="0" y="-35" width="1432" height="543">
+      <rect x="0" y="-35" width="1432" height="543" fill="white"/>
+      <circle cx="464.66" cy="73" r="6.2" fill="black"/>
+    </mask>
+  </defs>
+  <rect x="0" y="-35" width="1432" height="543" fill="#111111"/>
+  <path d="M48 40 H377 a8 8 0 0 1 8 8 V98 a8 8 0 0 1 -8 8 H48 a8 8 0 0 1 -8 -8 V48 a8 8 0 0 1 8 -8 Z" fill="#1a1430" stroke="#5a4a8a"/>
+  <text x="188.5" y="68.4" fill="#d9d9d9" text-anchor="middle">accounts</text>
+  <text x="188.5" y="87.4" fill="#d9d9d9" text-anchor="middle">(id, email, role, password_hash)</text>
+  <g transform="translate(333 54) scale(1.58333)">
+    <path d="M3 6.4 v11.2 a9 3.4 0 0 0 18 0 v-11.2 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 6.4 a9 3.4 0 0 1 18 0 a9 3.4 0 0 1 -18 0 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 11 a9 3.4 0 0 0 18 0" fill="none" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 15.6 a9 3.4 0 0 0 18 0" fill="none" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+  </g>
+  <path d="M549.4 40 H903.4 a8 8 0 0 1 8 8 V98 a8 8 0 0 1 -8 8 H549.4 a8 8 0 0 1 -8 -8 V48 a8 8 0 0 1 8 -8 Z" fill="#1a1430" stroke="#5a4a8a"/>
+  <text x="702.4" y="68.4" fill="#d9d9d9" text-anchor="middle">doctors</text>
+  <text x="702.4" y="87.4" fill="#d9d9d9" text-anchor="middle">(id, account_id, specialty, clinic)</text>
+  <g transform="translate(859.4 54) scale(1.58333)">
+    <path d="M3 6.4 v11.2 a9 3.4 0 0 0 18 0 v-11.2 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 6.4 a9 3.4 0 0 1 18 0 a9 3.4 0 0 1 -18 0 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 11 a9 3.4 0 0 0 18 0" fill="none" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 15.6 a9 3.4 0 0 0 18 0" fill="none" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+  </g>
+  <path d="M1029.4 40 H1367.4 a8 8 0 0 1 8 8 V98 a8 8 0 0 1 -8 8 H1029.4 a8 8 0 0 1 -8 -8 V48 a8 8 0 0 1 8 -8 Z" fill="#1a1430" stroke="#5a4a8a"/>
+  <text x="1174.4" y="68.4" fill="#d9d9d9" text-anchor="middle">patients</text>
+  <text x="1174.4" y="87.4" fill="#d9d9d9" text-anchor="middle">(id, display_name, linked emails)</text>
+  <g transform="translate(1323.4 54) scale(1.58333)">
+    <path d="M3 6.4 v11.2 a9 3.4 0 0 0 18 0 v-11.2 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 6.4 a9 3.4 0 0 1 18 0 a9 3.4 0 0 1 -18 0 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 11 a9 3.4 0 0 0 18 0" fill="none" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 15.6 a9 3.4 0 0 0 18 0" fill="none" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+  </g>
+  <path d="M1012.9 216 H1383.9 a8 8 0 0 1 8 8 V293 a8 8 0 0 1 -8 8 H1012.9 a8 8 0 0 1 -8 -8 V224 a8 8 0 0 1 8 -8 Z" fill="#1a1430" stroke="#5a4a8a"/>
+  <text x="1174.4" y="244.4" fill="#d9d9d9" text-anchor="middle">events</text>
+  <text x="1174.4" y="263.4" fill="#d9d9d9" text-anchor="middle">(id, patient_id, type, valid_time,</text>
+  <text x="1174.4" y="282.4" fill="#d9d9d9" text-anchor="middle">payload, supersedes_id, content_hash)</text>
+  <g transform="translate(1339.9 239.5) scale(1.58333)">
+    <path d="M3 6.4 v11.2 a9 3.4 0 0 0 18 0 v-11.2 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 6.4 a9 3.4 0 0 1 18 0 a9 3.4 0 0 1 -18 0 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 11 a9 3.4 0 0 0 18 0" fill="none" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 15.6 a9 3.4 0 0 0 18 0" fill="none" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+  </g>
+  <path d="M1029.4 382.4 H1367.4 a8 8 0 0 1 8 8 V459.4 a8 8 0 0 1 -8 8 H1029.4 a8 8 0 0 1 -8 -8 V390.4 a8 8 0 0 1 8 -8 Z" fill="#1a1430" stroke="#5a4a8a"/>
+  <text x="1174.4" y="410.8" fill="#d9d9d9" text-anchor="middle">documents</text>
+  <text x="1174.4" y="429.8" fill="#d9d9d9" text-anchor="middle">(id, patient_id, doctor_id, kind,</text>
+  <text x="1174.4" y="448.8" fill="#d9d9d9" text-anchor="middle">s3_key, supersedes_id)</text>
+  <g transform="translate(1323.4 405.9) scale(1.58333)">
+    <path d="M3 6.4 v11.2 a9 3.4 0 0 0 18 0 v-11.2 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 6.4 a9 3.4 0 0 1 18 0 a9 3.4 0 0 1 -18 0 Z" fill="#3e3d58" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 11 a9 3.4 0 0 0 18 0" fill="none" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M3 15.6 a9 3.4 0 0 0 18 0" fill="none" stroke="#8d8d8e" stroke-width="1.1" stroke-linejoin="round"/>
+  </g>
+  <line x1="385" y1="73" x2="541.4" y2="73" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r7fe44d66-arrow-5c5c7c)"/>
+  <rect x="416.2" y="63.5" width="94" height="19" fill="#111111"/>
+  <text x="463.2" y="77.9" fill="#d9d9d9" text-anchor="middle">account_id</text>
+  <path d="M 385 89 L 397.4 89 C 495.8 89, 495.8 16, 594.2 16 L 870.2 16 C 936.48 16, 990.2 28.76, 990.2 44.5 L 990.2 44.5 C 990.2 60.24, 999.15 73, 1010.2 73 L 1021.4 73" fill="none" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r7fe44d66-arrow-5c5c7c)" mask="url(#r7fe44d66-cut-1)"/>
+  <rect x="698.3" y="6.5" width="111" height="19" fill="#111111"/>
+  <text x="753.8" y="20.9" fill="#d9d9d9" text-anchor="middle">linked email</text>
+  <line x1="1198.4" y1="106" x2="1198.4" y2="216" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r7fe44d66-arrow-5c5c7c)"/>
+  <rect x="1096.4" y="151.5" width="204" height="19" fill="#111111"/>
+  <text x="1198.4" y="165.9" fill="#d9d9d9" text-anchor="middle">patient_id, append-only</text>
+  <path d="M 1214.4 216 L 1214.4 216" fill="none" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r7fe44d66-arrow-5c5c7c)"/>
+  <rect x="1125.4" y="206.5" width="178" height="19" fill="#111111"/>
+  <text x="1214.4" y="220.9" fill="#d9d9d9" text-anchor="middle">supersedes_id (self)</text>
+  <path d="M 1021.4 89 L 1021.4 89 C 999.03 89, 980.9 142.72, 980.9 209 L 980.9 304.9 C 980.9 371.18, 994.02 424.9, 1010.2 424.9 L 1021.4 424.9" fill="none" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r7fe44d66-arrow-5c5c7c)"/>
+  <rect x="933.9" y="247.45" width="94" height="19" fill="#111111"/>
+  <text x="980.9" y="261.85" fill="#d9d9d9" text-anchor="middle">patient_id</text>
+  <path d="M 726.4 106 L 726.4 320.9 C 726.4 387.18, 780.12 440.9, 846.4 440.9 L 1021.4 440.9" fill="none" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r7fe44d66-arrow-5c5c7c)"/>
+  <rect x="683.4" y="263.95" width="86" height="19" fill="#111111"/>
+  <text x="726.4" y="278.35" fill="#d9d9d9" text-anchor="middle">doctor_id</text>
+  <line x1="1198.4" y1="382.4" x2="1198.4" y2="301" stroke="#5c5c7c" stroke-width="1.6" marker-end="url(#r7fe44d66-arrow-5c5c7c)"/>
+  <rect x="1113.4" y="332.2" width="170" height="19" fill="#111111"/>
+  <text x="1198.4" y="346.6" fill="#d9d9d9" text-anchor="middle">payload.document_id</text>
+</svg>
